@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::UsersController, type: :controller do
+describe Api::UsersController do
   describe "GET #show" do
     before(:each) do
       @user = FactoryGirl.create(:user)
