@@ -8,8 +8,8 @@ describe Api::UsersController do
     end
 
     it "returns the information about a user" do
-      result = JSON.parse(response.body, symbolize_names: true)
-      expect(result[:email]).to eql @user.email
+      json_response = get_json_response()
+      expect(json_response[:email]).to eql @user.email
     end
 
     it { expect(response).to have_http_status(:ok) }
@@ -33,8 +33,8 @@ describe Api::UsersController do
       end
 
       it "render the json representation for the updated user" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
-        expect(user_response[:email]).to eql @new_email
+        json_response = get_json_response()
+        expect(json_response[:email]).to eql @new_email
       end
 
       it{ expect(response).to have_http_status(:ok) }
@@ -47,8 +47,7 @@ describe Api::UsersController do
       end
 
       it "renders the json errors on why the user could not be updated" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
-        expect(user_response).to have_key(:errors)
+        expect(get_json_response()).to have_key(:errors)
       end
 
       it{ expect(response).to have_http_status(:unprocessable_entity) }
@@ -63,8 +62,7 @@ describe Api::UsersController do
       end
 
       it "renders the json representation for the user record just created" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
-        expect(user_response[:email]).to eql @user_attributes[:email]
+        expect(get_json_response()[:email]).to eql @user_attributes[:email]
       end
 
       it { expect(response).to have_http_status(:created) }
@@ -78,11 +76,14 @@ describe Api::UsersController do
       end
 
       it "renders the json errors on why the user could not be created" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
-        expect(user_response).to have_key(:errors)
+        expect(get_json_response()).to have_key(:errors)
       end
 
       it { expect(response).to have_http_status(:unprocessable_entity) }
     end
   end
+end
+
+def get_json_response
+  JSON.parse(response.body, symbolize_names: true)
 end
