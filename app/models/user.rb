@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password()
-  validates(:email, :password, :password_confirmation, presence: true)
+  validates(:email, presence: true)
+  validates(:password, presence: true, if: :password_digest_changed?)
+  validates(:password_confirmation, presence: true, if: :password_digest_changed?)
 end
