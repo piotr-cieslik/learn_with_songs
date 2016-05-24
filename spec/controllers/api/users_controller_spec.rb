@@ -12,13 +12,11 @@ describe Api::UsersController do
       expect(result[:email]).to eql @user.email
     end
 
-    it "should response with 200 code" do
-      expect(response).to have_http_status(:ok)
-    end
+    it { expect(response).to have_http_status(:ok) }
   end
 
   describe "POST #create" do
-    describe "when is parameters are valid" do
+    describe "when parameters are valid" do
       before(:each) do
         @user_attributes = FactoryGirl.attributes_for(:user)
         post(:create, { user: @user_attributes }, format: :json)
@@ -32,11 +30,10 @@ describe Api::UsersController do
       it { expect(response).to have_http_status(:created) }
     end
 
-    describe "when is parameters are not valid" do
+    describe "when parameters are not valid" do
       before(:each) do
         @user_attributes = FactoryGirl.attributes_for(:user)
         @user_attributes[:email] = nil
-
         post(:create, { user: @user_attributes }, format: :json)
       end
 
