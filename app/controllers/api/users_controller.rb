@@ -1,7 +1,13 @@
 class Api::UsersController < ApplicationController
-  respond_to :json
+  respond_to(:json)
+  before_action(:authenticate!, only: [:show])
 
   def show
+    if current_user.id != params[:id].to_i()
+      render(json: nil, status: :unauthorized)
+      return
+    end
+
     respond_with(User.find(params[:id]))
   end
 
@@ -16,6 +22,7 @@ class Api::UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
+
     if user.update(user_params)
       render(json: user, status: :ok, location: [:api, user])
     else

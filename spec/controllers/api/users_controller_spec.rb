@@ -4,15 +4,30 @@ describe Api::UsersController do
   describe "GET #show" do
     before(:each) do
       @user = FactoryGirl.create(:user)
-      get(:show, id: @user.id, format: :json)
     end
 
-    it "returns the information about a user" do
+    it "returns the data when user_id match to the logged user id" do
+      request.headers['Authorization'] = @user.auth_token
+      get(:show, id: @user.id, format: :json)
+
       json_response = get_json_response()
       expect(json_response[:email]).to eql @user.email
+      expect(response).to have_http_status(:ok)
     end
 
-    it { expect(response).to have_http_status(:ok) }
+    it "returns the unauthorized when user is not logged in" do
+      get(:show, id: @user.id, format: :json)
+
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it "returns the unauthorized when user_id does not match to the logged user id" do
+      second_user = FactoryGirl.create(:user, { email: "another@email.com", auth_token: "other_auth_token" });
+      request.headers['Authorization'] = @user.auth_token
+      get(:show, id: second_user.id, format: :json)
+
+      expect(response).to have_http_status(:unauthorized)
+    end
   end
 
   describe "DELETE #destroy" do
