@@ -61,7 +61,7 @@ describe Api::UsersController do
       before(:each) do
         @user = FactoryGirl.create(:user)
         @new_email = "update@outlook.com"
-        
+
         request.headers['Authorization'] = @user.auth_token
         patch(:update, { id: @user.id, user: { email: @new_email } }, format: :json)
       end
@@ -87,35 +87,6 @@ describe Api::UsersController do
       end
 
       it{ expect(response).to have_http_status(:unprocessable_entity) }
-    end
-  end
-
-  describe "POST #create" do
-    context "when parameters are valid" do
-      before(:each) do
-        @user_attributes = FactoryGirl.attributes_for(:user)
-        post(:create, { user: @user_attributes }, format: :json)
-      end
-
-      it "renders the json representation for the user record just created" do
-        expect(get_json_response()[:email]).to eql @user_attributes[:email]
-      end
-
-      it { expect(response).to have_http_status(:created) }
-    end
-
-    context "when parameters are not valid" do
-      before(:each) do
-        @user_attributes = FactoryGirl.attributes_for(:user)
-        @user_attributes[:email] = nil
-        post(:create, { user: @user_attributes }, format: :json)
-      end
-
-      it "renders the json errors on why the user could not be created" do
-        expect(get_json_response()).to have_key(:errors)
-      end
-
-      it { expect(response).to have_http_status(:unprocessable_entity) }
     end
   end
 end
