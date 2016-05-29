@@ -22,7 +22,7 @@ describe Api::UsersController do
     end
 
     it "returns the unauthorized when user_id does not match to the logged user id" do
-      second_user = FactoryGirl.create(:user, { email: "another@email.com", auth_token: "other_auth_token" });
+      second_user = FactoryGirl.create(:user);
       request.headers['Authorization'] = @user.auth_token
       get(:show, id: second_user.id, format: :json)
 
