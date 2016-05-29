@@ -43,4 +43,19 @@ describe User do
       expect(@user.auth_token).not_to eql(second_user.auth_token)
     end
   end
+
+  describe "assosiations" do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      3.times(){ FactoryGirl.create(:song, user: @user) }
+    end
+
+    it "destroys the associated song on destroy" do
+      songs = @user.songs
+      @user.destroy
+      songs.each do |song|
+        expect(Song.exist?(product.id)).to eql(false)
+      end
+    end
+  end
 end
