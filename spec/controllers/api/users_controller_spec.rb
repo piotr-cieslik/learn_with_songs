@@ -1,6 +1,29 @@
 require 'rails_helper'
 
 describe Api::UsersController do
+  describe "When try to modify data belongs to other user" do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      @second_user = FactoryGirl.create(:user)
+      request.headers['Authorization'] = @user.auth_token
+    end
+
+    it "GET #show should return unauthorized" do
+      get(:show, { id: @second_user.id }, format: :json)
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it "PUT/PATCH #update should return unauthorized" do
+      patch(:update, { id: @second_user.id }, format: :json)
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it "DELETE #destroy should return unauthorized" do
+      delete(:destroy, { id: @second_user.id }, format: :json)
+      expect(response).to have_http_status(:unauthorized)
+    end
+  end
+
   describe "GET #show" do
     before(:each) do
       @user = FactoryGirl.create(:user)
@@ -20,19 +43,13 @@ describe Api::UsersController do
 
       expect(response).to have_http_status(:unauthorized)
     end
-
-    it "returns the unauthorized when user_id does not match to the logged user id" do
-      second_user = FactoryGirl.create(:user);
-      request.headers['Authorization'] = @user.auth_token
-      get(:show, id: second_user.id, format: :json)
-
-      expect(response).to have_http_status(:unauthorized)
-    end
   end
 
   describe "DELETE #destroy" do
     before(:each) do
       @user = FactoryGirl.create(:user)
+      request.headers['Authorization'] = @user.auth_token
+
       delete(:destroy, { id: @user.id }, format: :json)
     end
 
@@ -44,6 +61,8 @@ describe Api::UsersController do
       before(:each) do
         @user = FactoryGirl.create(:user)
         @new_email = "update@outlook.com"
+        
+        request.headers['Authorization'] = @user.auth_token
         patch(:update, { id: @user.id, user: { email: @new_email } }, format: :json)
       end
 
@@ -58,6 +77,8 @@ describe Api::UsersController do
     context "when parameters are not valid" do
       before(:each) do
         @user = FactoryGirl.create(:user)
+        request.headers['Authorization'] = @user.auth_token
+
         patch(:update, { id: @user.id, user: { email: "" } }, format: :json)
       end
 

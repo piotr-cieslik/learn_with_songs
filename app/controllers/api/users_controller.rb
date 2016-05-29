@@ -1,14 +1,10 @@
 class Api::UsersController < ApplicationController
   respond_to(:json)
-  before_action(:authenticate!, only: [:show])
+  before_action(:authenticate, except: [:create])
 
   def show
-    if current_user.id != params[:id].to_i()
-      render(json: nil, status: :unauthorized)
-      return
-    end
-
-    respond_with(User.find(params[:id]))
+    does_user_id_match_to_current_user_id(params[:id]) or return
+    respond_with(current_user())
   end
 
   def create
@@ -21,8 +17,9 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
+    does_user_id_match_to_current_user_id(params[:id]) or return
 
+    user = current_user()
     if user.update(user_params)
       render(json: user, status: :ok, location: [:api, user])
     else
@@ -31,7 +28,9 @@ class Api::UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
+    does_user_id_match_to_current_user_id(params[:id]) or return
+
+    user = current_user()
     user.destroy
     head :no_content
   end
