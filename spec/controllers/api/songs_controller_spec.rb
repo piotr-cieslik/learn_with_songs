@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe Api::SongsController do
   before(:each) do
+    set_request_accept_and_content_type_to_json()
+
     @user_1 = FactoryGirl.create(:user);
     @song_1 = FactoryGirl.create(:song, user: @user_1);
 
@@ -17,34 +19,34 @@ describe Api::SongsController do
     end
 
     it "GET #index" do
-      get(:index, format: :json)
+      get(:index)
       expect(response).to have_http_status(:unauthorized)
     end
 
     it "GET #show" do
-      get(:show, { id: @song_1.id }, format: :json)
+      get(:show, { id: @song_1.id })
       expect(response).to have_http_status(:unauthorized)
     end
 
     it "POST #create" do
-      get(:show, { id: @song_1.id }, format: :json)
+      get(:show, { id: @song_1.id })
       expect(response).to have_http_status(:unauthorized)
     end
 
     it "PATCH #update" do
-      patch(:update, { id: @song_1.id }, format: :json)
+      patch(:update, { id: @song_1.id })
       expect(response).to have_http_status(:unauthorized)
     end
 
     it "DELETE #destroy" do
-      delete(:destroy, { id: @song_1.id }, format: :json)
+      delete(:destroy, { id: @song_1.id })
       expect(response).to have_http_status(:unauthorized)
     end
   end
 
   describe "GET #index" do
     it "should return songs created by current user" do
-      get(:index, format: :json)
+      get(:index)
 
       server_response = get_response_body_as_json()
       expect(server_response.length).to eql(1)
@@ -54,12 +56,12 @@ describe Api::SongsController do
 
   describe "GET #show" do
     it "should return songs when belongs to current user" do
-      get(:show, id: @song_1.id, format: :json)
+      get(:show, id: @song_1.id)
       expect(response).to have_http_status(:ok)
     end
 
     it "should raise ActiveRecord::RecordNotFound exception when song belongs to different user" do
-      expect{ get(:show, id: @song_2.id, format: :json) }.to raise_exception(ActiveRecord::RecordNotFound)
+      expect{ get(:show, id: @song_2.id) }.to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
 
@@ -67,7 +69,7 @@ describe Api::SongsController do
     context "should create song for current user if parameters are valid" do
       before(:each) do
         @new_song_attributes = FactoryGirl.attributes_for(:song, user: @user_1)
-        post(:create, { song: @new_song_attributes }, format: :json)
+        post(:create, { song: @new_song_attributes })
       end
 
       it "return json representation of newly created object" do
@@ -84,7 +86,7 @@ describe Api::SongsController do
       before(:each) do
         @new_song_attributes = FactoryGirl.attributes_for(:song, user: @user_1)
         @new_song_attributes[:author] = nil
-        post(:create, { song: @new_song_attributes }, format: :json)
+        post(:create, { song: @new_song_attributes })
       end
 
       it "return error" do
@@ -102,7 +104,7 @@ describe Api::SongsController do
 
     context "should update song when parameters are valid and song belongs to user" do
       before(:each) do
-        patch(:update, {id: @song_1.id, song: { author: @new_author } }, format: :json)
+        patch(:update, {id: @song_1.id, song: { author: @new_author } })
       end
 
       it "return json representation of updated object" do
@@ -113,18 +115,18 @@ describe Api::SongsController do
     end
 
     it "should not update song when parameters are valid but song does not belong to user" do
-      expect{ patch(:update, {id: @song_2.id, song: { author: @new_author } }, format: :json) }
+      expect{ patch(:update, {id: @song_2.id, song: { author: @new_author } }) }
         .to raise_exception(ActiveRecord::RecordNotFound)
     end
 
     it "should not update song when parameters are not valid and song does not belong to user" do
-      expect{ patch(:update, {id: @song_2.id, song: { author: nil } }, format: :json) }
+      expect{ patch(:update, {id: @song_2.id, song: { author: nil } }) }
         .to raise_exception(ActiveRecord::RecordNotFound)
     end
 
     context "should not update song when parameters are not valid and song belongs to user" do
       before(:each) do
-        patch(:update, {id: @song_1.id, song: { author: nil } }, format: :json)
+        patch(:update, {id: @song_1.id, song: { author: nil } })
       end
 
       it "return errors" do
@@ -137,12 +139,12 @@ describe Api::SongsController do
 
   describe "DELETE #destroy" do
     it "should delete song, when song belongs to user" do
-      delete(:destroy, id: @song_1.id, format: :json)
+      delete(:destroy, id: @song_1.id)
       expect(response).to have_http_status(:no_content)
     end
 
     it "should not delete song, when song does not belong to user" do
-      expect{ delete(:destroy, id: @song_2.id, format: :json) }.to raise_exception(ActiveRecord::RecordNotFound)
+      expect{ delete(:destroy, id: @song_2.id) }.to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
 

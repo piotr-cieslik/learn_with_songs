@@ -20,6 +20,9 @@ RSpec.configure do |config|
   require('response_parser')
   config.include ResponseParser, :type => :controller
 
+  require('request_configuration')
+  config.include RequestConfiguration, :type => :controller
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

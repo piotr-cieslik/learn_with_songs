@@ -1,13 +1,17 @@
 require 'rails_helper'
 
 describe Api::SessionsController do
+  before(:each) do
+    set_request_accept_and_content_type_to_json()
+  end
+
   describe "POST #create" do
     before(:each) { @user = FactoryGirl.create(:user) }
 
     context "when the credentials are correct" do
       before(:each) do
         credentials = { email: @user.email, password: "123456" }
-        post(:create, { session: credentials }, format: :json)
+        post(:create, { session: credentials })
       end
 
       it "returns the user record corresponding to the given credentials" do
@@ -21,7 +25,7 @@ describe Api::SessionsController do
     context "when the credentials are incorrect" do
       before(:each) do
         credentials = { email: @user.email, password: "invalidpassword" }
-        post(:create, { session: credentials }, format: :json)
+        post(:create, { session: credentials })
       end
 
       it "returns a json with an error" do
@@ -35,7 +39,7 @@ describe Api::SessionsController do
   describe "DELETE #destroy" do
     before(:each) do
       @user = FactoryGirl.create(:user)
-      delete(:destroy, id: @user.auth_token, format: :json)
+      delete(:destroy, id: @user.auth_token)
     end
 
     it "generate new auth_token" do
