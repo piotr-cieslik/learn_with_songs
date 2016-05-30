@@ -95,6 +95,17 @@ describe Api::SongsController do
     end
   end
 
+  describe "DELETE #destroy" do
+    it "should delete song, when song belongs to user" do
+      delete(:destroy, id: @song_1.id, format: :json)
+      expect(response).to have_http_status(:no_content)
+    end
+
+    it "should not delete song, when song does not belong to user" do
+      expect{ delete(:destroy, id: @song_2.id, format: :json) }.to raise_exception(ActiveRecord::RecordNotFound)
+    end
+  end
+
 end
 
 def get_json_response

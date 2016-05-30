@@ -23,6 +23,8 @@ class Api::SongsController < ApplicationController
   end
 
   def destroy
+    current_user.songs.find(params[:id]).destroy()
+    head(:no_content)
   end
 
   private
