@@ -12,7 +12,7 @@ describe Api::SessionsController do
 
       it "returns the user record corresponding to the given credentials" do
         @user.reload
-        expect(get_json_response()[:auth_token]).to eql @user.auth_token
+        expect(get_response_body_as_json()[:auth_token]).to eql @user.auth_token
       end
 
       it { expect(response).to have_http_status(:ok) }
@@ -25,7 +25,7 @@ describe Api::SessionsController do
       end
 
       it "returns a json with an error" do
-        expect(get_json_response()).to have_key(:errors)
+        expect(get_response_body_as_json()).to have_key(:errors)
       end
 
       it { expect(response).to have_http_status(:unprocessable_entity) }
@@ -46,8 +46,4 @@ describe Api::SessionsController do
 
     it { expect(response).to have_http_status(:no_content) }
   end
-end
-
-def get_json_response
-  JSON.parse(response.body, symbolize_names: true)
 end

@@ -33,7 +33,7 @@ describe Api::UsersController do
       request.headers['Authorization'] = @user.auth_token
       get(:show, id: @user.id, format: :json)
 
-      json_response = get_json_response()
+      json_response = get_response_body_as_json()
       expect(json_response[:email]).to eql @user.email
       expect(response).to have_http_status(:ok)
     end
@@ -67,7 +67,7 @@ describe Api::UsersController do
       end
 
       it "render the json representation for the updated user" do
-        json_response = get_json_response()
+        json_response = get_response_body_as_json()
         expect(json_response[:email]).to eql @new_email
       end
 
@@ -83,14 +83,10 @@ describe Api::UsersController do
       end
 
       it "renders the json errors on why the user could not be updated" do
-        expect(get_json_response()).to have_key(:errors)
+        expect(get_response_body_as_json()).to have_key(:errors)
       end
 
       it{ expect(response).to have_http_status(:unprocessable_entity) }
     end
   end
-end
-
-def get_json_response
-  JSON.parse(response.body, symbolize_names: true)
 end

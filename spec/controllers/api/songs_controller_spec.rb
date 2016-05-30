@@ -46,7 +46,7 @@ describe Api::SongsController do
     it "should return songs created by current user" do
       get(:index, format: :json)
 
-      server_response = get_json_response()
+      server_response = get_response_body_as_json()
       expect(server_response.length).to eql(1)
       expect(server_response[0][:id]).to eql(@song_1.id)
     end
@@ -71,7 +71,7 @@ describe Api::SongsController do
       end
 
       it "return json representation of newly created object" do
-        server_response = get_json_response()
+        server_response = get_response_body_as_json()
 
         expect(server_response[:author]).to eql(@new_song_attributes[:author])
         expect(server_response[:user_id]).to eql(@user_1.id)
@@ -88,7 +88,7 @@ describe Api::SongsController do
       end
 
       it "return error" do
-        expect(get_json_response()).to have_key(:errors)
+        expect(get_response_body_as_json()).to have_key(:errors)
       end
 
       it { expect(response).to have_http_status(:unprocessable_entity) }
@@ -106,7 +106,7 @@ describe Api::SongsController do
       end
 
       it "return json representation of updated object" do
-        expect(get_json_response()[:author]).to eql(@new_author)
+        expect(get_response_body_as_json()[:author]).to eql(@new_author)
       end
 
       it{ expect(response).to have_http_status(:ok) }
@@ -128,7 +128,7 @@ describe Api::SongsController do
       end
 
       it "return errors" do
-        expect(get_json_response()).to have_key(:errors)
+        expect(get_response_body_as_json()).to have_key(:errors)
       end
 
       it{ expect(response).to have_http_status(:unprocessable_entity) }
@@ -146,8 +146,4 @@ describe Api::SongsController do
     end
   end
 
-end
-
-def get_json_response
-  JSON.parse(response.body, symbolize_names: true)
 end
