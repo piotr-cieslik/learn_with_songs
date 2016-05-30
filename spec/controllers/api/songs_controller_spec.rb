@@ -95,6 +95,46 @@ describe Api::SongsController do
     end
   end
 
+  describe "PATCH #update" do
+    before(:each) do
+      @new_author = "different author"
+    end
+
+    context "should update song when parameters are valid and song belongs to user" do
+      before(:each) do
+        patch(:update, {id: @song_1.id, song: { author: @new_author } }, format: :json)
+      end
+
+      it "return json representation of updated object" do
+        expect(get_json_response()[:author]).to eql(@new_author)
+      end
+
+      it{ expect(response).to have_http_status(:ok) }
+    end
+
+    it "should not update song when parameters are valid but song does not belong to user" do
+      expect{ patch(:update, {id: @song_2.id, song: { author: @new_author } }, format: :json) }
+        .to raise_exception(ActiveRecord::RecordNotFound)
+    end
+
+    it "should not update song when parameters are not valid and song does not belong to user" do
+      expect{ patch(:update, {id: @song_2.id, song: { author: nil } }, format: :json) }
+        .to raise_exception(ActiveRecord::RecordNotFound)
+    end
+
+    context "should not update song when parameters are not valid and song belongs to user" do
+      before(:each) do
+        patch(:update, {id: @song_1.id, song: { author: nil } }, format: :json)
+      end
+
+      it "return errors" do
+        expect(get_json_response()).to have_key(:errors)
+      end
+
+      it{ expect(response).to have_http_status(:unprocessable_entity) }
+    end
+  end
+
   describe "DELETE #destroy" do
     it "should delete song, when song belongs to user" do
       delete(:destroy, id: @song_1.id, format: :json)

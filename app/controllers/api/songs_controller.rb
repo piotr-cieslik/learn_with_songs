@@ -20,6 +20,12 @@ class Api::SongsController < ApplicationController
   end
 
   def update
+    song = current_user.songs.find(params[:id])
+    if song.update(song_params)
+      render(json: song, status: :ok, location: [:api, song])
+    else
+      render(json: { errors: song.errors }, status: :unprocessable_entity)
+    end
   end
 
   def destroy
