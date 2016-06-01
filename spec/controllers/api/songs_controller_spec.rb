@@ -48,9 +48,9 @@ describe Api::SongsController do
     it "should return songs created by current user" do
       get(:index)
 
-      server_response = get_response_body_as_json()
-      expect(server_response.length).to eql(1)
-      expect(server_response[0][:id]).to eql(@song_1.id)
+      response_data = get_response_data()
+      expect(response_data.length).to eql(1)
+      expect(response_data[0]["id"].to_i()).to eql(@song_1.id)
     end
   end
 
@@ -68,15 +68,14 @@ describe Api::SongsController do
   describe "POST #create" do
     context "should create song for current user if parameters are valid" do
       before(:each) do
-        @new_song_attributes = FactoryGirl.attributes_for(:song, user: @user_1)
-        post(:create, { song: @new_song_attributes })
+        @song = FactoryGirl.build(:song, user: @user_1)
+        song_serializable_resource = ActiveModelSerializers::SerializableResource.new(@song)
+        song_as_json = song_serializable_resource.as_json();
+        post(:create, song_as_json)
       end
 
       it "return json representation of newly created object" do
-        server_response = get_response_body_as_json()
-
-        expect(server_response[:author]).to eql(@new_song_attributes[:author])
-        expect(server_response[:user_id]).to eql(@user_1.id)
+        expect(get_response_attributes()["author"]).to eql(@song.author)
       end
 
       it { expect(response).to have_http_status(:ok) }
@@ -84,13 +83,15 @@ describe Api::SongsController do
 
     context "should not create song for current user if parameters are not valid" do
       before(:each) do
-        @new_song_attributes = FactoryGirl.attributes_for(:song, user: @user_1)
-        @new_song_attributes[:author] = nil
-        post(:create, { song: @new_song_attributes })
+        @song = FactoryGirl.build(:song, user: @user_1)
+        @song.author = nil
+        song_as_json = ActiveModelSerializers::SerializableResource.new(@song).as_json()
+
+        post(:create, song_as_json)
       end
 
-      it "return error" do
-        expect(get_response_body_as_json()).to have_key(:errors)
+      it "return errors" do
+        expect(get_response_errors()).not_to be_nil
       end
 
       it { expect(response).to have_http_status(:unprocessable_entity) }
@@ -104,33 +105,43 @@ describe Api::SongsController do
 
     context "should update song when parameters are valid and song belongs to user" do
       before(:each) do
-        patch(:update, {id: @song_1.id, song: { author: @new_author } })
+        @song_1.author = @new_author
+        json_data = ActiveModelSerializers::SerializableResource.new(@song_1).as_json()
+        patch(:update, { id: @song_1.id, data: json_data[:data] } )
       end
 
       it "return json representation of updated object" do
-        expect(get_response_body_as_json()[:author]).to eql(@new_author)
+        expect(get_response_attributes()["author"]).to eql(@new_author)
       end
 
       it{ expect(response).to have_http_status(:ok) }
     end
 
     it "should not update song when parameters are valid but song does not belong to user" do
-      expect{ patch(:update, {id: @song_2.id, song: { author: @new_author } }) }
-        .to raise_exception(ActiveRecord::RecordNotFound)
+      expect{
+        @song_2.author = @new_author
+        json_data = ActiveModelSerializers::SerializableResource.new(@song_2).as_json()
+        patch(:update,  { id: @song_2.id, data: json_data[:data] } )
+      }.to raise_exception(ActiveRecord::RecordNotFound)
     end
 
     it "should not update song when parameters are not valid and song does not belong to user" do
-      expect{ patch(:update, {id: @song_2.id, song: { author: nil } }) }
-        .to raise_exception(ActiveRecord::RecordNotFound)
+      expect{
+        @song_2.author = nil
+        json_data = ActiveModelSerializers::SerializableResource.new(@song_2).as_json()
+        patch(:update,  { id: @song_2.id, data: json_data[:data] } )
+      }.to raise_exception(ActiveRecord::RecordNotFound)
     end
 
     context "should not update song when parameters are not valid and song belongs to user" do
       before(:each) do
-        patch(:update, {id: @song_1.id, song: { author: nil } })
+        @song_1.author = nil
+        json_data = ActiveModelSerializers::SerializableResource.new(@song_1).as_json()
+        patch(:update,  { id: @song_1.id, data: json_data[:data] } )
       end
 
       it "return errors" do
-        expect(get_response_body_as_json()).to have_key(:errors)
+        expect(get_response_errors()).not_to be_nil
       end
 
       it{ expect(response).to have_http_status(:unprocessable_entity) }

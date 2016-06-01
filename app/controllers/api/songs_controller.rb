@@ -36,6 +36,6 @@ class Api::SongsController < ApplicationController
   private
 
     def song_params
-      params.require(:song).permit(:author, :title, :lyrics)
+      ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:author, :title, :lyrics])
     end
 end
