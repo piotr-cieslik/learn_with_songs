@@ -38,7 +38,7 @@ describe Api::UsersController do
       get(:show, id: @user.id)
 
       json_response = get_response_body_as_json()
-      expect(json_response[:email]).to eql @user.email
+      expect(get_response_attributes()["email"]).to eql @user.email
       expect(response).to have_http_status(:ok)
     end
 
@@ -72,7 +72,7 @@ describe Api::UsersController do
 
       it "render the json representation for the updated user" do
         json_response = get_response_body_as_json()
-        expect(json_response[:email]).to eql @new_email
+        expect(get_response_attributes()["email"]).to eql @new_email
       end
 
       it{ expect(response).to have_http_status(:ok) }

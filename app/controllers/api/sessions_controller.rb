@@ -1,7 +1,7 @@
 class Api::SessionsController < ApplicationController
   def create
-    user_password = params[:session][:password]
-    user_email = params[:session][:email]
+    user_password = params[:data][:attributes][:password]
+    user_email = params[:data][:attributes][:email]
     user = user_email.present? && User.find_by(email: user_email)
 
     if user.authenticate(user_password)
