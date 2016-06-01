@@ -1,8 +1,4 @@
 module ResponseParser
-  def get_response_body_as_json
-    JSON.parse(response.body, symbolize_names: true)
-  end
-
   def get_response_attributes
     get_response_data()["attributes"]
   end

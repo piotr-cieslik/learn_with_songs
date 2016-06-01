@@ -36,7 +36,7 @@ describe Api::SessionsController do
       end
 
       it "returns a json with an error" do
-        expect(get_response_body_as_json()).to have_key(:errors)
+        expect(get_response_errors()).not_to be_nil
       end
 
       it { expect(response).to have_http_status(:unprocessable_entity) }
