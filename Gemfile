@@ -23,6 +23,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'responders'
 
+gem 'react-rails', '~> 1.0'
+
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
