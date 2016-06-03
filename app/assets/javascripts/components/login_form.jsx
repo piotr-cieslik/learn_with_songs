@@ -23,17 +23,29 @@ var LoginForm = React.createClass({
     return (
       <form
         onSubmit={ this.handleSubmit } >
-        <input
-          type="text"
-          placeholder="email"
-          value={ this.state.email }
-          onChange={ this.handleEmailChanged }></input>
-        <input
-          type="password"
-          placeholder="password"
-          value={ this.state.password }
-          onChange={ this.handlePasswordChanged }></input>
-        <input type="submit"></input>
+        <div className="form-group">
+          <label>Email:</label>
+          <input
+            className="form-control"
+            type="text"
+            placeholder="email"
+            value={ this.state.email }
+            onChange={ this.handleEmailChanged }></input>
+        </div>
+        <div className="form-group">
+          <label>Hasło:</label>
+          <input
+            className="form-control"
+            type="password"
+            placeholder="hasło"
+            value={ this.state.password }
+            onChange={ this.handlePasswordChanged }></input>
+        </div>
+        <button
+          className="btn btn-primary"
+          type="submit">
+          Zaloguj
+        </button>
       </form>
     );
   }
