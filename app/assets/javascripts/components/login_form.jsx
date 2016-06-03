@@ -15,31 +15,8 @@ var LoginForm = React.createClass({
     if(!email || !password){
       return;
     }
-    var dataToSend = {
-      data: {
-        id: 0,
-        type: "session",
-        attributes: {
-          email: email,
-          password: password
-        }
-      }
-    };
 
-    $.ajax({
-      url: 'api/sessions',
-      dataType: 'json',
-      type: 'POST',
-      contentType: "application/json",
-      data: JSON.stringify(dataToSend),
-      success: function(data) {
-        alert('success');
-      }.bind(this),
-      error: function(xhr, status, error) {
-        alert('error');
-      }.bind(this)
-    });
-
+    this.props.onLoginFormSubmit(email, password);
     this.setState({ email: "", password: "" });
   },
   render: function() {
