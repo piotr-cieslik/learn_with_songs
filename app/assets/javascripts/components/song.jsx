@@ -1,8 +1,8 @@
 var Song = React.createClass({
   render: function() {
     return (
-      <div>
+      <span>
         { this.props.song.attributes.title }
-      </div>);
+      </span>);
   }
 })

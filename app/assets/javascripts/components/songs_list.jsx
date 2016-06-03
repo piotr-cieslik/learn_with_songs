@@ -20,8 +20,21 @@ var SongsList=React.createClass({
   },
   render: function(){
     var songs = this.state.songs.map(function(song) {
-      return <Song song={ song } key={ song.id }></Song>;
+      return (
+        <li className="list-group-item">
+          <Song song={ song } key={ song.id }></Song>
+        </li>
+      );
     });
-    return <div>{ songs }</div>;
+    return (
+      <div className="panel panel-default">
+        <div className="panel-heading">
+          Lista piosenek
+        </div>
+        <ul className="list-group">
+          { songs }
+        </ul>
+      </div>
+    );
   }
 });
