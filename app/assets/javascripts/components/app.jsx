@@ -30,7 +30,7 @@ var App = React.createClass({
   },
   render: function() {
     if (this.state.currentUser) {
-      return <h1>Works :)</h1>;
+      return <SongsList authorizationToken={ this.state.currentUser['auth-token'] } />;
     }
     return <LoginForm onLoginFormSubmit={ this.handleLoginFormSubmit } />;
   }
