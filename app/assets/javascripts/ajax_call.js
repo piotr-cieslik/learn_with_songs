@@ -41,5 +41,19 @@ var AjaxCall = {
         parameters.error(xhr, status, error);
       }
     });
+  },
+  delete: function(parameters){
+    $.ajax({
+      url: parameters.url,
+      dataType: 'json',
+      type: 'DELETE',
+      contentType: "application/json",
+      success: function(data) {
+        parameters.success(data);
+      },
+      error: function(xhr, status, error) {
+        parameters.error(xhr, status, error);
+      }
+    });
   }
 }

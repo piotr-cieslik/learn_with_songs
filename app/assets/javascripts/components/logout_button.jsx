@@ -9,11 +9,9 @@ var LogoutButton = React.createClass({
   handleClick: function(e) {
     e.preventDefault();
     var authorizationToken = this.props.authorizationToken;
-    $.ajax({
+
+    AjaxCall.delete({
       url: 'api/sessions/' + authorizationToken,
-      dataType: 'json',
-      type: 'DELETE',
-      contentType: "application/json",
       success: function(data) {
         this.props.onUserSuccessfullyLogout();
       }.bind(this),
