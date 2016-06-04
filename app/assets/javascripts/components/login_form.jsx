@@ -27,13 +27,10 @@ var LoginForm = React.createClass({
       }
     });
 
-    $.ajax({
+    AjaxCall.post({
       url: 'api/sessions',
-      dataType: 'json',
-      type: 'POST',
-      contentType: "application/json",
       data: jsonData,
-      success: function(data) {
+      success: function(data){
         this.props.onUserSuccessfullyLogin(data.data);
       }.bind(this),
       error: function(xhr, status, error) {

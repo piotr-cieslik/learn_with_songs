@@ -16,5 +16,6 @@
 //= require react_ujs
 //= require bootstrap-sprockets
 //= require cookies
+//= require ajax_call
 //= require_tree ./components
 //= require_tree .
