@@ -17,6 +17,14 @@ var App = React.createClass({
       }
     });
   },
+  handleUserErroneouslyLogin: function(){
+    this.setState({
+      notification: {
+        type: "danger",
+        message: "Niepoprawny email lub hasło."
+      }
+    });
+  },
   handleUserSuccessfullyLogout: function(){
     this.setState({
       currentUser: null,
@@ -38,7 +46,7 @@ var App = React.createClass({
         <div>
           <MenuBar
             authorizationToken={ authorizationToken }
-            onUserSuccessfullyLogout ={ this.handleUserSuccessfullyLogout } />
+            onUserSuccessfullyLogout={ this.handleUserSuccessfullyLogout } />
           { notificationBar }
           <SongsPage
             authorizationToken={ authorizationToken } />;
@@ -49,7 +57,8 @@ var App = React.createClass({
       <div>
         { notificationBar }
         <LoginPage
-          onUserSuccessfullyLogin={ this.handleUserSuccessfullyLogin } />;
+          onUserSuccessfullyLogin={ this.handleUserSuccessfullyLogin }
+          onUserErroneouslyLogin={this.handleUserErroneouslyLogin} />;
       </div>
     );
   }

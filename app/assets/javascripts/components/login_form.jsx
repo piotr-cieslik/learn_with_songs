@@ -37,6 +37,7 @@ var LoginForm = React.createClass({
         this.props.onUserSuccessfullyLogin(data.data);
       }.bind(this),
       error: function(xhr, status, error) {
+        this.props.onUserErroneouslyLogin();
         this.setState({ password: "" });
       }.bind(this)
     });
