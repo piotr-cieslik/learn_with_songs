@@ -5,13 +5,19 @@ var App = React.createClass({
   handleUserSuccessfullyLogin: function(user){
     this.setState({ currentUser: user });
   },
+  handleUserSuccessfullyLogout: function(){
+    this.setState({ currentUser: null });
+  },
   render: function() {
     if (this.state.currentUser) {
+      var authorizationToken = this.state.currentUser['attributes']['auth-token'];
       return(
         <div>
-          <MenuBar />
+          <MenuBar
+            authorizationToken={ authorizationToken }
+            onUserSuccessfullyLogout ={ this.handleUserSuccessfullyLogout } />
           <SongsPage
-            authorizationToken={ this.state.currentUser['attributes']['auth-token'] } />;
+            authorizationToken={ authorizationToken } />;
         </div>
       );
     }

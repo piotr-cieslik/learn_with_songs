@@ -4,7 +4,11 @@ var MenuBar = React.createClass({
       <nav className="navbar navbar-default">
         <div className="container-fluid">
           <ul className="nav navbar-nav navbar-right">
-            <li><a href="#">Wyloguj</a></li>
+            <li>
+              <LogoutButton
+                authorizationToken={ this.props.authorizationToken }
+                onUserSuccessfullyLogout ={ this.props.onUserSuccessfullyLogout } />
+            </li>
           </ul>
         </div>
       </nav>
