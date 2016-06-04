@@ -16,37 +16,63 @@ var LoginForm = React.createClass({
       return;
     }
 
-    this.props.onLoginFormSubmit(email, password);
-    this.setState({ email: "", password: "" });
+    var jsonData = JSON.stringify({
+      data: {
+        id: 0,
+        type: "session",
+        attributes: {
+          email: email,
+          password: password
+        }
+      }
+    });
+
+    $.ajax({
+      url: 'api/sessions',
+      dataType: 'json',
+      type: 'POST',
+      contentType: "application/json",
+      data: jsonData,
+      success: function(data) {
+        this.props.onUserSuccessfullyLogin(data.data);
+      }.bind(this),
+      error: function(xhr, status, error) {
+        this.setState({ password: "" });
+      }.bind(this)
+    });
   },
   render: function() {
     return (
-      <form
-        onSubmit={ this.handleSubmit } >
-        <div className="form-group">
-          <label>Email:</label>
-          <input
-            className="form-control"
-            type="text"
-            placeholder="email"
-            value={ this.state.email }
-            onChange={ this.handleEmailChanged }></input>
+      <div className="panel panel-default">
+        <div className="panel-body">
+          <form
+            onSubmit={ this.handleSubmit } >
+            <div className="form-group">
+              <label>Email:</label>
+              <input
+                className="form-control"
+                type="text"
+                placeholder="email"
+                value={ this.state.email }
+                onChange={ this.handleEmailChanged }></input>
+            </div>
+            <div className="form-group">
+              <label>Hasło:</label>
+              <input
+                className="form-control"
+                type="password"
+                placeholder="hasło"
+                value={ this.state.password }
+                onChange={ this.handlePasswordChanged }></input>
+            </div>
+            <button
+              className="btn btn-primary"
+              type="submit">
+              Zaloguj
+            </button>
+          </form>
         </div>
-        <div className="form-group">
-          <label>Hasło:</label>
-          <input
-            className="form-control"
-            type="password"
-            placeholder="hasło"
-            value={ this.state.password }
-            onChange={ this.handlePasswordChanged }></input>
-        </div>
-        <button
-          className="btn btn-primary"
-          type="submit">
-          Zaloguj
-        </button>
-      </form>
+      </div>
     );
   }
 });

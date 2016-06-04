@@ -2,37 +2,16 @@ var App = React.createClass({
   getInitialState: function() {
     return { currentUser: null };
   },
-  handleLoginFormSubmit: function(email, password){
-    var jsonData = JSON.stringify({
-      data: {
-        id: 0,
-        type: "session",
-        attributes: {
-          email: email,
-          password: password
-        }
-      }
-    });
-
-    $.ajax({
-      url: 'api/sessions',
-      dataType: 'json',
-      type: 'POST',
-      contentType: "application/json",
-      data: jsonData,
-      success: function(data) {
-        this.setState({ currentUser: data.data.attributes });
-      }.bind(this),
-      error: function(xhr, status, error) {
-        alert('error');
-      }.bind(this)
-    });
+  handleUserSuccessfullyLogin: function(user){
+    this.setState({ currentUser: user });
   },
   render: function() {
     if (this.state.currentUser) {
-      return <SongsPage authorizationToken={ this.state.currentUser['auth-token'] } />;
+      return <SongsPage
+        authorizationToken={ this.state.currentUser['attributes']['auth-token'] } />;
     }
-    return <LoginForm onLoginFormSubmit={ this.handleLoginFormSubmit } />;
+    return <LoginPage
+      onUserSuccessfullyLogin={ this.handleUserSuccessfullyLogin } />;
   }
 });
 
