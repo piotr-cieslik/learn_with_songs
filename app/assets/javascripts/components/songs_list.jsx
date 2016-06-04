@@ -20,6 +20,7 @@ var SongsList=React.createClass({
   },
   handleSongSelect: function(song){
     this.setState({ selectedSong: song });
+    this.props.onSongSelect(song);
   },
   render: function(){
     var songs = this.state.songs.map(function(song) {
