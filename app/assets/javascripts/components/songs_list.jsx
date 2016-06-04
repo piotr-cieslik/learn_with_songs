@@ -1,6 +1,6 @@
 var SongsList=React.createClass({
   getInitialState: function() {
-    return { songs: [] };
+    return { songs: [], selectedSong: null };
   },
   componentDidMount: function() {
     $.ajax({
@@ -18,14 +18,20 @@ var SongsList=React.createClass({
       }.bind(this)
     });
   },
+  handleSongSelect: function(song){
+    this.setState({ selectedSong: song });
+  },
   render: function(){
     var songs = this.state.songs.map(function(song) {
+      var isSelected = this.state.selectedSong && song.id == this.state.selectedSong.id;
       return (
-        <li className="list-group-item">
-          <Song song={ song } key={ song.id }></Song>
-        </li>
+        <Song
+          key={ song.id }
+          song={ song }
+          isSelected ={ isSelected }
+          onSongSelect={ this.handleSongSelect }></Song>
       );
-    });
+    }, this);
     return (
       <div className="panel panel-default">
         <div className="panel-heading">
