@@ -7,8 +7,13 @@ var App = React.createClass({
   },
   render: function() {
     if (this.state.currentUser) {
-      return <SongsPage
-        authorizationToken={ this.state.currentUser['attributes']['auth-token'] } />;
+      return(
+        <div>
+          <MenuBar />
+          <SongsPage
+            authorizationToken={ this.state.currentUser['attributes']['auth-token'] } />;
+        </div>
+      );
     }
     return <LoginPage
       onUserSuccessfullyLogin={ this.handleUserSuccessfullyLogin } />;
