@@ -1,7 +1,8 @@
 var App = React.createClass({
   getInitialState: function() {
+    var currentUser = Cookies.getJsonCookie('currentUser');
     return {
-      currentUser: null,
+      currentUser: currentUser,
       notification: {
         type: null,
         message: null
@@ -9,6 +10,7 @@ var App = React.createClass({
     };
   },
   handleUserSuccessfullyLogin: function(user){
+    Cookies.setJsonCookie('currentUser', user);
     this.setState({
       currentUser: user,
       notification: {
@@ -26,6 +28,7 @@ var App = React.createClass({
     });
   },
   handleUserSuccessfullyLogout: function(){
+    Cookies.deleteCookie('currentUser');
     this.setState({
       currentUser: null,
       notification: {
