@@ -5,7 +5,7 @@ var Song = React.createClass({
   render: function() {
     var className="list-group-item";
     if(this.props.isSelected){
-      className += " list-group-item-info";
+      className += " active";
     }
     return (
       <li className={ className } onClick={ this.handleOnClick }>

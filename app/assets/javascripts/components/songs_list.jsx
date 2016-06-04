@@ -34,7 +34,7 @@ var SongsList=React.createClass({
       );
     }, this);
     return (
-      <div className="panel panel-default">
+      <div id="songs-list" className="panel panel-default">
         <div className="panel-heading">
           Lista piosenek
         </div>
