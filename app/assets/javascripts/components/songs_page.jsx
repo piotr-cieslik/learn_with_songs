@@ -11,10 +11,10 @@ var SongsPage = React.createClass({
       url: 'api/songs',
       dataType: 'json',
       type: 'GET',
-      headers:{
-        'Authorization': this.props.authorizationToken
-      },
       contentType: "application/json",
+      headers:{
+        'Authorization': CurrentUser.getAuthorizationToken()
+      },
       success: function(data) {
         this.setState({ songs: data.data })
       }.bind(this),

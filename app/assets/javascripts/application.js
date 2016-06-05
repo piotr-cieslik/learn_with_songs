@@ -17,6 +17,7 @@
 //= require bootstrap-sprockets
 //= require_tree ./plugins
 //= require cookies
+//= require current_user
 //= require ajax_call
 //= require_tree ./components
 //= require_tree .

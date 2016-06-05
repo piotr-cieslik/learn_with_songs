@@ -31,6 +31,7 @@ var LoginForm = React.createClass({
       url: 'api/sessions',
       data: jsonData,
       success: function(data){
+        CurrentUser.set(data.data);
         this.props.onUserSuccessfullyLogin(data.data);
       }.bind(this),
       error: function(xhr, status, error) {

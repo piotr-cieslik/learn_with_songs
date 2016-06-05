@@ -6,7 +6,6 @@ var MenuBar = React.createClass({
           <ul className="nav navbar-nav navbar-right">
             <li>
               <LogoutButton
-                authorizationToken={ this.props.authorizationToken }
                 onUserSuccessfullyLogout ={ this.props.onUserSuccessfullyLogout } />
             </li>
           </ul>

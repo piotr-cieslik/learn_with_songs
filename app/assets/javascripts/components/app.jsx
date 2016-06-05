@@ -1,8 +1,6 @@
 var App = React.createClass({
   getInitialState: function() {
-    var currentUser = Cookies.getJsonCookie('currentUser');
     return {
-      currentUser: currentUser,
       notification: {
         type: null,
         message: null
@@ -10,9 +8,7 @@ var App = React.createClass({
     };
   },
   handleUserSuccessfullyLogin: function(user){
-    Cookies.setJsonCookie('currentUser', user);
     this.setState({
-      currentUser: user,
       notification: {
         type: "success",
         message: "Pomyślnie zalogowano."
@@ -28,9 +24,7 @@ var App = React.createClass({
     });
   },
   handleUserSuccessfullyLogout: function(){
-    Cookies.deleteCookie('currentUser');
     this.setState({
-      currentUser: null,
       notification: {
         type: "success",
         message: "Pomyślnie wylogowano."
@@ -43,16 +37,15 @@ var App = React.createClass({
         type={ this.state.notification.type }
         message={ this.state.notification.message } />
     );
-    if (this.state.currentUser) {
-      var authorizationToken = this.state.currentUser['attributes']['auth-token'];
+
+    var currentUser = CurrentUser.get();
+    if (currentUser) {
       return(
         <div>
           <MenuBar
-            authorizationToken={ authorizationToken }
             onUserSuccessfullyLogout={ this.handleUserSuccessfullyLogout } />
           { notificationBar }
-          <SongsPage
-            authorizationToken={ authorizationToken } />;
+          <SongsPage />;
         </div>
       );
     }

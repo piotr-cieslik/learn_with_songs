@@ -26,15 +26,20 @@ $(document).ajaxStop(function () {
   $.unblockUI();
 });
 
-var AjaxCall = {
-  post: function(parameters){
+var AjaxCall = function(currentUser){
+  _that = this;
+  _currentUser = currentUser;
+
+  _that.post = function(parameters){
     $.ajax({
       url: parameters.url,
       dataType: 'json',
       type: 'POST',
       contentType: "application/json",
       data: parameters.data,
-      headers: parameters.headers,
+      headers:{
+        'Authorization': _currentUser.getAuthorizationToken()
+      },
       success: function(data) {
         parameters.success(data);
       },
@@ -42,8 +47,8 @@ var AjaxCall = {
         parameters.error(xhr, status, error);
       }
     });
-  },
-  delete: function(parameters){
+  };
+  _that.delete = function(parameters){
     $.ajax({
       url: parameters.url,
       dataType: 'json',
@@ -56,5 +61,7 @@ var AjaxCall = {
         parameters.error(xhr, status, error);
       }
     });
-  }
-}
+  };
+
+  return _that;
+}(CurrentUser);

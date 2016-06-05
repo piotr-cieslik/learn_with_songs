@@ -8,11 +8,11 @@ var LogoutButton = React.createClass({
   },
   handleClick: function(e) {
     e.preventDefault();
-    var authorizationToken = this.props.authorizationToken;
 
     AjaxCall.delete({
-      url: 'api/sessions/' + authorizationToken,
+      url: 'api/sessions/' + CurrentUser.getAuthorizationToken(),
       success: function(data) {
+        CurrentUser.clear();
         this.props.onUserSuccessfullyLogout();
       }.bind(this),
       error: function(xhr, status, error) {
