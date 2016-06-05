@@ -34,6 +34,7 @@ var AjaxCall = {
       type: 'POST',
       contentType: "application/json",
       data: parameters.data,
+      headers: parameters.headers,
       success: function(data) {
         parameters.success(data);
       },

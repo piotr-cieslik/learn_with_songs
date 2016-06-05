@@ -22,6 +22,10 @@ var SongsList=React.createClass({
     this.setState({ selectedSong: song });
     this.props.onSongSelect(song);
   },
+  handleCreateNewSong: function(){
+    this.setState({ selectedSong: null });
+    this.props.onCreateNewSong();
+  },
   render: function(){
     var songs = this.state.songs.map(function(song) {
       var isSelected = this.state.selectedSong && song.id == this.state.selectedSong.id;
@@ -34,14 +38,20 @@ var SongsList=React.createClass({
       );
     }, this);
     return (
-      <div id="songs-list" className="panel panel-default">
-        <div className="panel-heading">
-          Lista piosenek
+      <div>
+        <div id="songs-list" className="panel panel-default">
+          <div className="panel-heading">
+            <span>Lista piosenek</span>
+          </div>
+          <ul className="list-group">
+            { songs }
+          </ul>
         </div>
-        <ul className="list-group">
-          { songs }
-        </ul>
+        <button
+          className="btn btn-success btn-block"
+          onClick={ this.handleCreateNewSong }>Stwórz nową</button>
       </div>
+
     );
   }
 });
