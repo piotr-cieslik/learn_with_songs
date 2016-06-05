@@ -1,30 +1,48 @@
 var SongsPage = React.createClass({
   getInitialState: function(){
     return{
-      currentSong: null,
+      songs: [],
+      selectedSong: null,
       isCreatingNew: false,
     };
   },
+  componentDidMount: function() {
+    $.ajax({
+      url: 'api/songs',
+      dataType: 'json',
+      type: 'GET',
+      headers:{
+        'Authorization': this.props.authorizationToken
+      },
+      contentType: "application/json",
+      success: function(data) {
+        this.setState({ songs: data.data })
+      }.bind(this),
+      error: function(xhr, status, err) {
+      }.bind(this)
+    });
+  },
   handleSongSelect: function(song){
     this.setState({
-      currentSong: song,
+      selectedSong: song,
       isCreatingNew: false
     });
   },
   handleCreateNewSong: function(){
     this.setState({
-      currentSong: null,
+      selectedSong: null,
       isCreatingNew: true
     });
   },
   handleSongSuccessfullyCreate: function(song){
-    return{
-      currentSong: song,
+    var songs = this.state.songs.concat([song]);
+    this.setState({
+      songs: songs,
+      selectedSong: song,
       isCreatingNew: false,
-    };
+    });
   },
   render: function() {
-
     if(this.state.isCreatingNew){
       var content = <SongNewForm
         authorizationToken={ this.props.authorizationToken }
@@ -32,7 +50,7 @@ var SongsPage = React.createClass({
     }
     else {
       var content = <SongDetails
-        song={ this.state.currentSong } />
+        song={ this.state.selectedSong } />
     }
 
     return(
@@ -40,7 +58,8 @@ var SongsPage = React.createClass({
         <div className="row">
           <div className="col-lg-2">
             <SongsList
-              authorizationToken={ this.props.authorizationToken }
+              songs={ this.state.songs }
+              selectedSong={ this.state.selectedSong }
               onSongSelect={ this.handleSongSelect }
               onCreateNewSong= { this.handleCreateNewSong } />
           </div>
