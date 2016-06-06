@@ -7,6 +7,8 @@ var SongsPageContainer = React.createClass({
     };
   },
   componentDidMount: function() {
+    appStore.subscribe(this.handleStoreStateChange);
+
     $.ajax({
       url: 'api/songs',
       dataType: 'json',
@@ -15,10 +17,10 @@ var SongsPageContainer = React.createClass({
       headers:{
         'Authorization': CurrentUser.getAuthorizationToken()
       },
-      success: function(data) {
-        this.setState({ songs: data.data })
+      success: function(data){
+        appStore.dispatch(Actions.fillSongs(data.data));
       }.bind(this),
-      error: function(xhr, status, err) {
+      error: function(xhr, status, err){
       }.bind(this)
     });
   },
@@ -42,17 +44,22 @@ var SongsPageContainer = React.createClass({
       isCreatingNew: false,
     });
   },
-  handleSongSuccessfullyDeleted: function(song){
-    var songs = this.state.songs;
-    var index = songs.indexOf(song);
-    if (index > -1) {
-      songs.splice(index, 1);
+  handleDeleteSong: function(songId){
+    if(!confirm("Czy na pewno chcesz usunąć piosenkę?")){
+      return;
     }
-    this.setState({
-      songs: songs,
-      selectedSong: null,
-      isCreatingNew: false,
+
+    AjaxCall.delete({
+      url: "api/songs/" + songId,
+      success: function(){
+        appStore.dispatch(Actions.deleteSong(songId));
+      }.bind(this),
+      error: function(){
+      }
     });
+  },
+  handleStoreStateChange: function(){
+    this.setState({ songs: appStore.getState().songs });
   },
   render: function(){
     return <SongsPage
@@ -62,6 +69,6 @@ var SongsPageContainer = React.createClass({
       onSongSelect={ this.handleSongSelect }
       onCreateNewSong= { this.handleCreateNewSong }
       onSongSuccessfullyCreate={ this.handleSongSuccessfullyCreate }
-      onSongSuccessfullyDeleted={ this.handleSongSuccessfullyDeleted }/>;
+      onDeleteSong={ this.handleDeleteSong }/>;
   }
 });

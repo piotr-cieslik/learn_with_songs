@@ -1,19 +1,6 @@
 var SongDetails = React.createClass({
-  handleDeleteClick: function(){
-    var remove = confirm("Czy na pewno chcesz usunąć piosenkę?");
-    if(!remove){
-      return;
-    }
-
-    AjaxCall.delete({
-      url: "api/songs/" + this.props.song.id,
-      success: function(){
-        this.props.onSongSuccessfullyDeleted(this.props.song);
-      }.bind(this),
-      error: function(){
-        alert("error :(");
-      }
-    });
+  handleDeleteSong: function(){
+    this.props.onDeleteSong(this.props.song.id)
   },
   render: function(){
     if(!this.props.song){
@@ -33,7 +20,7 @@ var SongDetails = React.createClass({
             <button
               type="button"
               className="btn btn-danger"
-              onClick={ this.handleDeleteClick }>Usuń</button>
+              onClick={ this.handleDeleteSong }>Usuń</button>
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ var SongsPage = React.createClass({
     else {
       var content = <SongDetails
         song={ this.props.selectedSong }
-        onSongSuccessfullyDeleted={ this.props.onSongSuccessfullyDeleted }/>
+        onDeleteSong={ this.props.onDeleteSong }/>
     }
 
     return(
