@@ -45,7 +45,7 @@ var App = React.createClass({
           <MenuBar
             onUserSuccessfullyLogout={ this.handleUserSuccessfullyLogout } />
           { notificationBar }
-          <SongsPage />;
+          <SongsPageContainer />;
         </div>
       );
     }

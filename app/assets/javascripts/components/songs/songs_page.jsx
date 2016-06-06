@@ -1,69 +1,13 @@
 var SongsPage = React.createClass({
-  getInitialState: function(){
-    return{
-      songs: [],
-      selectedSong: null,
-      isCreatingNew: false,
-    };
-  },
-  componentDidMount: function() {
-    $.ajax({
-      url: 'api/songs',
-      dataType: 'json',
-      type: 'GET',
-      contentType: "application/json",
-      headers:{
-        'Authorization': CurrentUser.getAuthorizationToken()
-      },
-      success: function(data) {
-        this.setState({ songs: data.data })
-      }.bind(this),
-      error: function(xhr, status, err) {
-      }.bind(this)
-    });
-  },
-  handleSongSelect: function(song){
-    this.setState({
-      selectedSong: song,
-      isCreatingNew: false
-    });
-  },
-  handleCreateNewSong: function(){
-    this.setState({
-      selectedSong: null,
-      isCreatingNew: true
-    });
-  },
-  handleSongSuccessfullyCreate: function(song){
-    var songs = this.state.songs.concat([song]);
-    this.setState({
-      songs: songs,
-      selectedSong: song,
-      isCreatingNew: false,
-    });
-  },
-  handleSongSuccessfullyDeleted: function(song){
-    var songs = this.state.songs;
-    var index = songs.indexOf(song);
-    if (index > -1) {
-      songs.splice(index, 1);
-    }
-    this.setState({
-      songs: songs,
-      selectedSong: null,
-      isCreatingNew: false,
-    });
-  },
   render: function() {
-    if(this.state.isCreatingNew){
+    if(this.props.isCreatingNew){
       var content = <SongNewForm
-        authorizationToken={ this.props.authorizationToken }
-        onSongSuccessfullyCreate={ this.handleSongSuccessfullyCreate } />
+        onSongSuccessfullyCreate={ this.props.onSongSuccessfullyCreate } />
     }
     else {
       var content = <SongDetails
-        song={ this.state.selectedSong }
-        onSongSuccessfullyDeleted={ this.handleSongSuccessfullyDeleted }/>
+        song={ this.props.selectedSong }
+        onSongSuccessfullyDeleted={ this.props.onSongSuccessfullyDeleted }/>
     }
 
     return(
@@ -71,10 +15,10 @@ var SongsPage = React.createClass({
         <div className="row">
           <div className="col-lg-2">
             <SongsList
-              songs={ this.state.songs }
-              selectedSong={ this.state.selectedSong }
-              onSongSelect={ this.handleSongSelect }
-              onCreateNewSong= { this.handleCreateNewSong } />
+              songs={ this.props.songs }
+              selectedSong={ this.props.selectedSong }
+              onSongSelect={ this.props.onSongSelect }
+              onCreateNewSong= { this.props.onCreateNewSong } />
           </div>
           <div className="col-lg-8">
             { content }

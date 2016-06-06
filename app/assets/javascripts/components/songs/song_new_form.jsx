@@ -30,9 +30,6 @@ var SongNewForm = React.createClass({
     AjaxCall.post({
       url: 'api/songs',
       data: jsonData,
-      headers:{
-        'Authorization': this.props.authorizationToken
-      },
       success: function(data){
         this.props.onSongSuccessfullyCreate(data.data);
       }.bind(this),
