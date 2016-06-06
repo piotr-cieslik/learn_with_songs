@@ -42,6 +42,18 @@ var SongsPage = React.createClass({
       isCreatingNew: false,
     });
   },
+  handleSongSuccessfullyDeleted: function(song){
+    var songs = this.state.songs;
+    var index = songs.indexOf(song);
+    if (index > -1) {
+      songs.splice(index, 1);
+    }
+    this.setState({
+      songs: songs,
+      selectedSong: null,
+      isCreatingNew: false,
+    });
+  },
   render: function() {
     if(this.state.isCreatingNew){
       var content = <SongNewForm
@@ -50,7 +62,8 @@ var SongsPage = React.createClass({
     }
     else {
       var content = <SongDetails
-        song={ this.state.selectedSong } />
+        song={ this.state.selectedSong }
+        onSongSuccessfullyDeleted={ this.handleSongSuccessfullyDeleted }/>
     }
 
     return(

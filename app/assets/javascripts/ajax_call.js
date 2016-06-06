@@ -54,6 +54,9 @@ var AjaxCall = function(currentUser){
       dataType: 'json',
       type: 'DELETE',
       contentType: "application/json",
+      headers:{
+        'Authorization': _currentUser.getAuthorizationToken()
+      },
       success: function(data) {
         parameters.success(data);
       },

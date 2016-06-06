@@ -1,4 +1,20 @@
 var SongDetails = React.createClass({
+  handleDeleteClick: function(){
+    var remove = confirm("Czy na pewno chcesz usunąć piosenkę?");
+    if(!remove){
+      return;
+    }
+
+    AjaxCall.delete({
+      url: "api/songs/" + this.props.song.id,
+      success: function(){
+        this.props.onSongSuccessfullyDeleted(this.props.song);
+      }.bind(this),
+      error: function(){
+        alert("error :(");
+      }
+    });
+  },
   render: function(){
     if(!this.props.song){
       return null;
@@ -14,8 +30,10 @@ var SongDetails = React.createClass({
             { this.props.song.attributes.lyrics }
           </pre>
           <div className="btn-toolbar pull-right">
-            <button type="button" className="btn btn-primary">Edytuj</button>
-            <button type="button" className="btn btn-danger">Usuń</button>
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={ this.handleDeleteClick }>Usuń</button>
           </div>
         </div>
       </div>
