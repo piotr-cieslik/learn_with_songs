@@ -1,30 +1,22 @@
-var SongsPage = React.createClass({
-  render: function() {
-    if(this.props.isCreatingNew){
-      var content = <SongNewForm
-        onSongSuccessfullyCreate={ this.props.onSongSuccessfullyCreate } />
-    }
-    else {
-      var content = <SongDetails
-        song={ this.props.selectedSong }
-        onDeleteSong={ this.props.onDeleteSong }/>
-    }
-
-    return(
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-lg-2">
-            <SongsList
-              songs={ this.props.songs }
-              selectedSong={ this.props.selectedSong }
-              onSongSelect={ this.props.onSongSelect }
-              onCreateNewSong= { this.props.onCreateNewSong } />
-          </div>
-          <div className="col-lg-8">
-            { content }
-          </div>
+var SongsPage = function(props){
+  return(
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-lg-2">
+          <SongsList
+            songs={ props.songs }
+            selectedSong={ props.selectedSong }
+            onSongSelect={ props.onSongSelect } />
+          <button
+            className="btn btn-success btn-block"
+            onClick={ props.onGoToNewSongPage }>Stwórz nową</button>
+        </div>
+        <div className="col-lg-8">
+          <SongDetails
+            song={ props.selectedSong }
+            onDeleteSong={ props.onDeleteSong }/>
         </div>
       </div>
-    );
-  }
-});
+    </div>
+  );
+};

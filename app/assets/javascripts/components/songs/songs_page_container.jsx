@@ -30,20 +30,6 @@ var SongsPageContainer = React.createClass({
       isCreatingNew: false
     });
   },
-  handleCreateNewSong: function(){
-    this.setState({
-      selectedSong: null,
-      isCreatingNew: true
-    });
-  },
-  handleSongSuccessfullyCreate: function(song){
-    var songs = this.state.songs.concat([song]);
-    this.setState({
-      songs: songs,
-      selectedSong: song,
-      isCreatingNew: false,
-    });
-  },
   handleDeleteSong: function(songId){
     if(!confirm("Czy na pewno chcesz usunąć piosenkę?")){
       return;
@@ -58,6 +44,9 @@ var SongsPageContainer = React.createClass({
       }
     });
   },
+  handleGoToNewSongPage: function(){
+    appStore.dispatch(Actions.goToPage('/songs/new'));
+  },
   handleStoreStateChange: function(){
     this.setState({ songs: appStore.getState().songs });
   },
@@ -65,10 +54,8 @@ var SongsPageContainer = React.createClass({
     return <SongsPage
       songs={ this.state.songs }
       selectedSong={ this.state.selectedSong }
-      isCreatingNew={ this.state.isCreatingNew }
       onSongSelect={ this.handleSongSelect }
-      onCreateNewSong= { this.handleCreateNewSong }
-      onSongSuccessfullyCreate={ this.handleSongSuccessfullyCreate }
+      onGoToNewSongPage= { this.handleGoToNewSongPage }
       onDeleteSong={ this.handleDeleteSong }/>;
   }
 });

@@ -2,9 +2,6 @@ var SongsList=React.createClass({
   handleSongSelect: function(song){
     this.props.onSongSelect(song);
   },
-  handleCreateNewSong: function(){
-    this.props.onCreateNewSong();
-  },
   render: function(){
     var songs = this.props.songs.map(function(song) {
       var isSelected = this.props.selectedSong && song.id == this.props.selectedSong.id;
@@ -17,20 +14,14 @@ var SongsList=React.createClass({
       );
     }, this);
     return (
-      <div>
-        <div id="songs-list" className="panel panel-default">
-          <div className="panel-heading">
-            <span>Lista piosenek</span>
-          </div>
-          <ul className="list-group">
-            { songs }
-          </ul>
+      <div id="songs-list" className="panel panel-default">
+        <div className="panel-heading">
+          <span>Lista piosenek</span>
         </div>
-        <button
-          className="btn btn-success btn-block"
-          onClick={ this.handleCreateNewSong }>Stwórz nową</button>
+        <ul className="list-group">
+          { songs }
+        </ul>
       </div>
-
     );
   }
 });

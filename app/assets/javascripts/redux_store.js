@@ -1,6 +1,7 @@
 const FILL_SONGS = 'FILL_SONGS';
 const CREATE_SONG = 'CREATE_SONG';
 const DELETE_SONG = 'DELETE_SONG';
+const GO_TO_PAGE = 'GO_TO_PAGE';
 
 Actions = {
   fillSongs: function(songs){
@@ -15,15 +16,23 @@ Actions = {
       songId: songId
     }
   },
+  goToPage: function(url){
+    return{
+      type: GO_TO_PAGE,
+      url: url
+    }
+  }
 };
 
 var appReducer = function(state, action) {
   if (typeof state === 'undefined') {
-    return{ songs:[] }
+    return{ songs:[], url: null }
   }
 
   if(action.type === FILL_SONGS){
-    return{ songs: action.songs }
+    state.songs = action.songs;
+    
+    return state;
   }
 
   if(action.type === DELETE_SONG){
@@ -33,7 +42,15 @@ var appReducer = function(state, action) {
     var index = state.songs.indexOf(songToDelete);
     state.songs.splice(index, 1);
     var newSongs = state.songs.slice();
-    return{ songs: newSongs }
+    state.songs = newSongs;
+
+    return state;
+  }
+
+  if(action.type === GO_TO_PAGE){
+    state.url = action.url;
+
+    return state;
   }
 
   return state
