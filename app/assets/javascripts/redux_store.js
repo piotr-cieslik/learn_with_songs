@@ -10,6 +10,12 @@ Actions = {
       songs: songs
     }
   },
+  createSong: function(song){
+    return{
+      type: CREATE_SONG,
+      song: song
+    }
+  },
   deleteSong: function(songId){
     return{
       type: DELETE_SONG,
@@ -31,7 +37,14 @@ var appReducer = function(state, action) {
 
   if(action.type === FILL_SONGS){
     state.songs = action.songs;
-    
+
+    return state;
+  }
+
+  if(action.type === CREATE_SONG){
+    state.songs.push(action.song);
+    state.songs = state.songs.slice();
+
     return state;
   }
 
