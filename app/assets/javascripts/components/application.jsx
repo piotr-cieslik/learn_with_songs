@@ -1,4 +1,4 @@
-var App = React.createClass({
+var Appplication = React.createClass({
   getInitialState: function() {
     var state = appStore.getState();
     return{ url: state.url };
@@ -44,7 +44,7 @@ var App = React.createClass({
 
 $(document).ready(function() {
   ReactDOM.render(
-    <App/>,
-    document.getElementById('app')
+    <Appplication/>,
+    document.getElementById('application')
   );
 });
