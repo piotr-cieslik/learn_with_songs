@@ -1,3 +1,3 @@
 var ProtectedContent = function(props){
-  return null;
+  return (<h1>protected content</h1>);
 };

@@ -19,25 +19,13 @@ var Appplication = React.createClass({
     this.setState({ url: appStore.getState().url });
   },
   render: function() {
-    var currentUser = CurrentUser.get();
-    if (!currentUser) {
-      return(
-        <LoginPage
-          onUserSuccessfullyLogin={ this.handleUserSuccessfullyLogin }
-          onUserErroneouslyLogin={this.handleUserErroneouslyLogin} />
-      );
-    }
-
-    if(this.state.url === '/songs/new'){
-      return <NewSongPageContainer />;
-    }
-
     return(
-      <div>
-        <MenuBar
-          onUserSuccessfullyLogout={ this.handleUserSuccessfullyLogout } />
-        <SongsPageContainer />;
-      </div>
+      <ReactRouter.Router history={ ReactRouter.browserHistory }>
+        <ReactRouter.Route path="/">
+          <ReactRouter.Route path="login" component={ LoginPageContainer }></ReactRouter.Route>
+          <ReactRouter.Route path="songs" component={ ProtectedContentContainer }></ReactRouter.Route>
+        </ReactRouter.Route>
+      </ReactRouter.Router>
     );
   }
 });

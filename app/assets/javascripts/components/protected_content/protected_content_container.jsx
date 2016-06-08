@@ -1,5 +1,9 @@
 var ProtectedContentContainer = React.createClass({
     render: function() {
-      <ProtectedContent />
+      return (
+        <div>
+          { this.props.children }
+        </div>
+      );
     }
 });
