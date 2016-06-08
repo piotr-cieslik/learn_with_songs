@@ -15,7 +15,7 @@
 //= require react
 //= require react_ujs
 //= require bootstrap-sprockets
-//= require_tree ./plugins
+//= require_tree ./libs
 //= require redux_store
 //= require cookies
 //= require current_user
