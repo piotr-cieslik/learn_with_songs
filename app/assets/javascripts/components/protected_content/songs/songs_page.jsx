@@ -10,6 +10,7 @@ var SongsPage = function(props){
           <button
             className="btn btn-success btn-block"
             onClick={ props.onGoToNewSongPage }>Stwórz nową</button>
+          <LogoutButton />
         </div>
         <div className="col-lg-8">
           <SongDetails

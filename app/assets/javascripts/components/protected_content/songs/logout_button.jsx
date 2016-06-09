@@ -1,11 +1,11 @@
 var LogoutButton = React.createClass({
   handleClick: function(e) {
     e.preventDefault();
-
     var token = applicationStore.getState().user.attributes['auth-token']
     AjaxCall.delete({
       url: 'api/sessions/' + token,
       success: function(data) {
+        cookies.delete('current_user');
         applicationStore.dispatch(Actions.logout());
         ReactRouter.browserHistory.push('/login');
       }.bind(this),
@@ -15,7 +15,10 @@ var LogoutButton = React.createClass({
   },
   render: function(){
     return (
-      <a href="#" onClick={ this.handleClick }>Wyloguj</a>
+      <a
+        href="#"
+        className="btn btn-danger btn-block"
+        onClick={ this.handleClick }>Wyloguj</a>
     );
   }
 });
