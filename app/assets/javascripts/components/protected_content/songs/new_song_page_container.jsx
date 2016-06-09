@@ -15,14 +15,14 @@ var NewSongPageContainer = React.createClass({
       url: 'api/songs',
       data: jsonData,
       success: function(data){
-        appStore.dispatch(Actions.goToPage('/songs'));
+        applicationStore.dispatch(Actions.goToPage('/songs'));
       }.bind(this),
       error: function(xhr, status, error) {
       }.bind(this)
     });
   },
   handleClose: function(e) {
-    appStore.dispatch(Actions.goToPage('/songs'));
+    applicationStore.dispatch(Actions.goToPage('/songs'));
   },
   handleAuthorChanged: function(e) {
     this.setState({ author: e.target.value });

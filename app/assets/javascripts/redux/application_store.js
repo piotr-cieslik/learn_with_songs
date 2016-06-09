@@ -8,4 +8,4 @@ var initialState = {
   songs:[],
   user: currentUser
 };
-var appStore = Redux.createStore(reducers, initialState);
+var applicationStore = Redux.createStore(reducers, initialState);

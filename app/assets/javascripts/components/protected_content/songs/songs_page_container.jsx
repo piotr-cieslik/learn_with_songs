@@ -7,8 +7,8 @@ var SongsPageContainer = React.createClass({
     };
   },
   componentDidMount: function() {
-    appStore.subscribe(this.handleStoreStateChange);
-    var user = appStore.getState().user;
+    applicationStore.subscribe(this.handleStoreStateChange);
+    var user = applicationStore.getState().user;
     var authorizationToken = user && user['attributes']['auth-token'];
     $.ajax({
       url: 'api/songs',
@@ -19,7 +19,7 @@ var SongsPageContainer = React.createClass({
         'Authorization': authorizationToken
       },
       success: function(data){
-        appStore.dispatch(Actions.fillSongs(data.data));
+        applicationStore.dispatch(Actions.fillSongs(data.data));
       }.bind(this),
       error: function(xhr, status, err){
       }.bind(this)
@@ -39,17 +39,17 @@ var SongsPageContainer = React.createClass({
     AjaxCall.delete({
       url: "api/songs/" + songId,
       success: function(){
-        appStore.dispatch(Actions.deleteSong(songId));
+        applicationStore.dispatch(Actions.deleteSong(songId));
       }.bind(this),
       error: function(){
       }
     });
   },
   handleGoToNewSongPage: function(){
-    appStore.dispatch(Actions.goToPage('/songs/new'));
+    applicationStore.dispatch(Actions.goToPage('/songs/new'));
   },
   handleStoreStateChange: function(){
-    this.setState({ songs: appStore.getState().songs });
+    this.setState({ songs: applicationStore.getState().songs });
   },
   render: function(){
     return <SongsPage

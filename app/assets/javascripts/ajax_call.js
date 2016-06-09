@@ -28,7 +28,7 @@ $(document).ajaxStop(function () {
 
 var AjaxCall = {
   post: function(parameters){
-    var user = appStore.getState().user;
+    var user = applicationStore.getState().user;
     var authorizationToken = user && user['attributes']['auth-token'];
     $.ajax({
       url: parameters.url,
@@ -48,7 +48,7 @@ var AjaxCall = {
     });
   },
   delete: function(parameters){
-    var user = appStore.getState().user;
+    var user = applicationStore.getState().user;
     var authorizationToken = user && user['attributes']['auth-token'];
     $.ajax({
       url: parameters.url,
