@@ -27,9 +27,24 @@ $(document).ajaxStop(function () {
 });
 
 var ajaxCall = {
+  get: function(parameters){
+    $.ajax({
+      url: parameters.url,
+      dataType: 'json',
+      type: 'GET',
+      contentType: "application/json",
+      headers:{
+        'Authorization': this.getAuthorizationToken()
+      },
+      success: function(data){
+        parameters.success(data);
+      },
+      error: function(xhr, status, err){
+        parameters.error(xhr, status, error);
+      }
+    });
+  },
   post: function(parameters){
-    var user = applicationStore.getState().user;
-    var authorizationToken = user && user['attributes']['auth-token'];
     $.ajax({
       url: parameters.url,
       dataType: 'json',
@@ -37,7 +52,7 @@ var ajaxCall = {
       contentType: "application/json",
       data: parameters.data,
       headers:{
-        'Authorization': authorizationToken
+        'Authorization': this.getAuthorizationToken()
       },
       success: function(data) {
         parameters.success(data);
@@ -48,15 +63,13 @@ var ajaxCall = {
     });
   },
   delete: function(parameters){
-    var user = applicationStore.getState().user;
-    var authorizationToken = user && user['attributes']['auth-token'];
     $.ajax({
       url: parameters.url,
       dataType: 'json',
       type: 'DELETE',
       contentType: "application/json",
       headers:{
-        'Authorization': authorizationToken
+        'Authorization': this.getAuthorizationToken()
       },
       success: function(data) {
         parameters.success(data);
@@ -65,5 +78,10 @@ var ajaxCall = {
         parameters.error(xhr, status, error);
       }
     });
+  },
+  getAuthorizationToken: function(){
+    var user = applicationStore.getState().user;
+    var authorizationToken = user && user['attributes']['auth-token'];
+    return authorizationToken;
   }
 };

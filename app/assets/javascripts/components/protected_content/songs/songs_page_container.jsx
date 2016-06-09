@@ -8,22 +8,16 @@ var SongsPageContainer = React.createClass({
   },
   componentDidMount: function() {
     applicationStore.subscribe(this.handleStoreStateChange);
-    var user = applicationStore.getState().user;
-    var authorizationToken = user && user['attributes']['auth-token'];
-    $.ajax({
+
+    ajaxCall.get({
       url: 'api/songs',
-      dataType: 'json',
-      type: 'GET',
-      contentType: "application/json",
-      headers:{
-        'Authorization': authorizationToken
-      },
       success: function(data){
         applicationStore.dispatch(Actions.fillSongs(data.data));
       }.bind(this),
-      error: function(xhr, status, err){
-      }.bind(this)
+      error: function(){
+      }
     });
+
   },
   handleSongSelect: function(song){
     this.setState({
