@@ -24,7 +24,7 @@ var LoginPageContainer = React.createClass({
       }
     });
 
-    AjaxCall.post({
+    ajaxCall.post({
       url: 'api/sessions',
       data: jsonData,
       success: function(data){

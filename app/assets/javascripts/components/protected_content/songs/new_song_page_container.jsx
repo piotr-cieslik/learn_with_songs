@@ -11,7 +11,7 @@ var NewSongPageContainer = React.createClass({
       }
     });
 
-    AjaxCall.post({
+    ajaxCall.post({
       url: 'api/songs',
       data: jsonData,
       success: function(data){

@@ -26,7 +26,7 @@ $(document).ajaxStop(function () {
   $.unblockUI();
 });
 
-var AjaxCall = {
+var ajaxCall = {
   post: function(parameters){
     var user = applicationStore.getState().user;
     var authorizationToken = user && user['attributes']['auth-token'];

@@ -36,7 +36,7 @@ var SongsPageContainer = React.createClass({
       return;
     }
 
-    AjaxCall.delete({
+    ajaxCall.delete({
       url: "api/songs/" + songId,
       success: function(){
         applicationStore.dispatch(Actions.deleteSong(songId));
