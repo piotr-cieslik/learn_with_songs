@@ -18,9 +18,12 @@
 //= require jquery.blockUI
 //= require redux
 //= require ReactRouter
-//= require redux_store
 
 //= require cookies
+//= require redux/actions
+//= require redux/songs_reducer
+//= require redux/user_reducer
+//= require redux/application_store
 //= require current_user
 //= require ajax_call
 //= require_tree ./components
