@@ -12,7 +12,7 @@ var NewSongPageContainer = React.createClass({
     });
 
     ajaxCall.post({
-      url: 'api/songs',
+      url: '/api/songs',
       data: jsonData,
       success: function(data){
         applicationStore.dispatch(Actions.goToPage('/songs'));

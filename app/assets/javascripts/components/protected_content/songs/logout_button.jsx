@@ -3,7 +3,7 @@ var LogoutButton = React.createClass({
     e.preventDefault();
     var token = applicationStore.getState().user.attributes['auth-token']
     ajaxCall.delete({
-      url: 'api/sessions/' + token,
+      url: '/api/sessions/' + token,
       success: function(data) {
         cookies.delete('current_user');
         applicationStore.dispatch(Actions.logout());

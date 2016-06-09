@@ -25,7 +25,7 @@ var LoginPageContainer = React.createClass({
     });
 
     ajaxCall.post({
-      url: 'api/sessions',
+      url: '/api/sessions',
       data: jsonData,
       success: function(data){
         cookies.setJson('current_user', data.data, 1);

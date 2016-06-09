@@ -6,7 +6,7 @@ var SongsPageContainer = React.createClass({
     applicationStore.subscribe(this.handleStoreStateChange);
 
     ajaxCall.get({
-      url: 'api/songs',
+      url: '/api/songs',
       success: function(data){
         applicationStore.dispatch(Actions.fillSongs(data.data));
       }.bind(this),
@@ -21,7 +21,7 @@ var SongsPageContainer = React.createClass({
     }
 
     ajaxCall.delete({
-      url: "api/songs/" + songId,
+      url: "/api/songs/" + songId,
       success: function(){
         applicationStore.dispatch(Actions.deleteSong(songId));
       }.bind(this),
