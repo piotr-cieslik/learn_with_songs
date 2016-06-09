@@ -4,9 +4,7 @@ var SongsPage = function(props){
       <div className="row">
         <div className="col-lg-2">
           <SongsList
-            songs={ props.songs }
-            selectedSong={ props.selectedSong }
-            onSongSelect={ props.onSongSelect } />
+            songs={ props.songs } />
           <button
             className="btn btn-success btn-block"
             onClick={ props.onGoToNewSongPage }>Stwórz nową</button>
@@ -14,7 +12,7 @@ var SongsPage = function(props){
         </div>
         <div className="col-lg-8">
           <SongDetails
-            song={ props.selectedSong }
+            song={ props.currentSong }
             onDeleteSong={ props.onDeleteSong }/>
         </div>
       </div>
