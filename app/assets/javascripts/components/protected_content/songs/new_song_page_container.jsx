@@ -24,8 +24,6 @@ var NewSongPageContainer = React.createClass({
       }.bind(this)
     });
   },
-  handleClose: function(e) {
-  },
   handleAuthorChanged: function(e) {
     this.setState({ author: e.target.value });
   },
@@ -40,7 +38,6 @@ var NewSongPageContainer = React.createClass({
       onAuthorChanged={ this.handleAuthorChanged }
       onTitleChanged={ this.handleTitleChanged }
       onLyricsChanged={ this.handleLyricsChanged }
-      onSubmit={ this.handleSubmit }
-      onClose={ this.handleClose }/>
+      onSubmit={ this.handleSubmit } />
   }
 });

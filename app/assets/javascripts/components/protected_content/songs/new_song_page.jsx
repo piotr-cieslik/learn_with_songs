@@ -3,9 +3,9 @@ var NewSongPage = function(props){
     <div>
       <div className="container-fluid">
         <div className="text-right">
-          <button type="button" className="btn btn-link" onClick={ props.onClose }>
+          <ReactRouter.Link to="/songs" className="btn btn-link">
             <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-          </button>
+          </ReactRouter.Link>
         </div>
       </div>
       <div className="container">
