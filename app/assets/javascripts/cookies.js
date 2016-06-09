@@ -1,15 +1,15 @@
-var Cookies = {
-  setCookie: function(name, value, exdays) {
+var cookies = {
+  set: function(name, value, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
     document.cookie = name + "=" + value + "; " + expires;
   },
-  setJsonCookie: function(name, value){
+  setJson: function(name, value){
     var stringifyValue = JSON.stringify(value);
-    this.setCookie(name, stringifyValue);
+    this.set(name, stringifyValue);
   },
-  getCookie: function(name) {
+  get: function(name) {
     var cookieName = name + "=";
     var ca = document.cookie.split(';');
     for(var i = 0; i <ca.length; i++) {
@@ -23,8 +23,8 @@ var Cookies = {
     }
     return null;
   },
-  getJsonCookie: function(name){
-    var value = this.getCookie(name);
+  getJson: function(name){
+    var value = this.get(name);
     if(!value){
       return null;
     }

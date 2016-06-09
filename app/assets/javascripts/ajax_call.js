@@ -26,11 +26,10 @@ $(document).ajaxStop(function () {
   $.unblockUI();
 });
 
-var AjaxCall = function(currentUser){
-  _that = this;
-  _currentUser = currentUser;
-
-  _that.post = function(parameters){
+var AjaxCall = {
+  post: function(parameters){
+    var user = appStore.getState().user;
+    var authorizationToken = user && user['attributes']['auth-token'];
     $.ajax({
       url: parameters.url,
       dataType: 'json',
@@ -38,7 +37,7 @@ var AjaxCall = function(currentUser){
       contentType: "application/json",
       data: parameters.data,
       headers:{
-        'Authorization': _currentUser.getAuthorizationToken()
+        'Authorization': authorizationToken
       },
       success: function(data) {
         parameters.success(data);
@@ -47,15 +46,17 @@ var AjaxCall = function(currentUser){
         parameters.error(xhr, status, error);
       }
     });
-  };
-  _that.delete = function(parameters){
+  },
+  delete: function(parameters){
+    var user = appStore.getState().user;
+    var authorizationToken = user && user['attributes']['auth-token'];
     $.ajax({
       url: parameters.url,
       dataType: 'json',
       type: 'DELETE',
       contentType: "application/json",
       headers:{
-        'Authorization': _currentUser.getAuthorizationToken()
+        'Authorization': authorizationToken
       },
       success: function(data) {
         parameters.success(data);
@@ -64,7 +65,5 @@ var AjaxCall = function(currentUser){
         parameters.error(xhr, status, error);
       }
     });
-  };
-
-  return _that;
-}(CurrentUser);
+  }
+};
