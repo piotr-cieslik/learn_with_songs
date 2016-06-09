@@ -28,6 +28,7 @@ var LoginPageContainer = React.createClass({
       url: 'api/sessions',
       data: jsonData,
       success: function(data){
+        cookies.setJson('current_user', data.data, 1);
         applicationStore.dispatch(Actions.login(data.data));
         ReactRouter.browserHistory.push('/songs');
       }.bind(this),
