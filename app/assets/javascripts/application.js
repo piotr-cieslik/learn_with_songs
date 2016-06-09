@@ -15,8 +15,11 @@
 //= require react
 //= require react_ujs
 //= require bootstrap-sprockets
-//= require_tree ./libs
+//= require jquery.blockUI
+//= require redux
+//= require ReactRouter
 //= require redux_store
+
 //= require cookies
 //= require current_user
 //= require ajax_call
