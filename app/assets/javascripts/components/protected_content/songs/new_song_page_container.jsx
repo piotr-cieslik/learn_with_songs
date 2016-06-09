@@ -1,5 +1,7 @@
 var NewSongPageContainer = React.createClass({
-  handleSubmit: function(){
+  handleSubmit: function(e){
+    e.preventDefault();
+
     var jsonData = JSON.stringify({
       data: {
         type: "song",
@@ -15,14 +17,14 @@ var NewSongPageContainer = React.createClass({
       url: '/api/songs',
       data: jsonData,
       success: function(data){
-        applicationStore.dispatch(Actions.goToPage('/songs'));
+        applicationStore.dispatch(Actions.createSong(data.data))
+        ReactRouter.browserHistory.push('/songs/' + data.data.id);
       }.bind(this),
       error: function(xhr, status, error) {
       }.bind(this)
     });
   },
   handleClose: function(e) {
-    applicationStore.dispatch(Actions.goToPage('/songs'));
   },
   handleAuthorChanged: function(e) {
     this.setState({ author: e.target.value });

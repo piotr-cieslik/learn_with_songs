@@ -9,7 +9,7 @@ function songsReducer(state, action) {
 
   if(action.type === CREATE_SONG){
     state.push(action.song);
-    return state.songs.slice();
+    return state.slice();
   }
 
   if(action.type === DELETE_SONG){
