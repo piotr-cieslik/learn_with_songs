@@ -5,9 +5,11 @@ var SongsPage = function(props){
         <div className="col-lg-2">
           <SongsList
             songs={ props.songs } />
-          <button
-            className="btn btn-success btn-block"
-            onClick={ props.onGoToNewSongPage }>Stwórz nową</button>
+          <ReactRouter.Link
+            to="/songs/new"
+            className="btn btn-primary btn-block">
+            Stwórz nową
+          </ReactRouter.Link>
           <LogoutButton />
         </div>
         <div className="col-lg-8">

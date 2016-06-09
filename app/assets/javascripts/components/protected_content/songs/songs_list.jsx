@@ -1,19 +1,19 @@
 var SongsList=React.createClass({
   render: function(){
-    var songs = this.props.songs.map(function(song) {
+    var items = this.props.songs.map(function(song) {
       var isSelected = this.props.params && song.id == this.props.params.id;
       return (
-        <Song
+        <SongListItem
           key={ song.id }
           song={ song }
           isSelected ={ isSelected }
-          onSongSelect={ this.handleSongSelect }></Song>
+          onSongSelect={ this.handleSongSelect } />
       );
     }, this);
     return (
-      <div>
-          { songs }
-      </div>
+      <ul>
+          { items }
+      </ul>
     );
   }
 });
