@@ -2,18 +2,8 @@ var SongsPage = function(props){
   return(
     <div className="row">
       <div className="col l2">
-        <div className="card">
-          <div className="card-content">
-            <span className="card-title">Lista piosenek</span>
-            <SongsList
-              songs={ props.songs } />
-            <ReactRouter.Link
-              to="/songs/new"
-              className="waves-effect waves-light btn">
-              Stwórz nową
-            </ReactRouter.Link>
-          </div>
-        </div>
+        <SongsList
+          songs={ props.songs } />
       </div>
       <div className="col l8">
         <SongDetails

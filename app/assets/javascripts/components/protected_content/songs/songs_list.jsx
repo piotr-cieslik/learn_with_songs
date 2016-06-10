@@ -11,9 +11,19 @@ var SongsList=React.createClass({
       );
     }, this);
     return (
-      <ul>
-          { items }
-      </ul>
+      <div className="card">
+        <div className="card-content">
+          <span className="card-title">Lista piosenek</span>
+          <ul>
+              { items }
+          </ul>
+          <ReactRouter.Link
+            to="/songs/new"
+            className="waves-effect waves-light btn">
+            Dodaj piosenkę
+          </ReactRouter.Link>
+        </div>
+      </div>
     );
   }
 });
