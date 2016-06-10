@@ -8,15 +8,20 @@ var SongDetails = React.createClass({
     }
 
     return(
-      <div>
-        <pre>
-          { this.props.song.attributes.lyrics }
-        </pre>
-        <div className="btn-toolbar pull-right">
-          <button
-            type="button"
-            className="btn btn-danger"
-            onClick={ this.handleDeleteSong }>Usuń</button>
+      <div className="card">
+        <div className="card-content">
+          <span className="card-title">
+            { this.props.song.attributes.author } - { this.props.song.attributes.title }
+          </span>
+          <pre>
+            { this.props.song.attributes.lyrics }
+          </pre>
+          <div className="btn-toolbar pull-right">
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={ this.handleDeleteSong }>Usuń</button>
+          </div>
         </div>
       </div>
     );

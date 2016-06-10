@@ -1,22 +1,24 @@
 var SongsPage = function(props){
   return(
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-lg-2">
-          <SongsList
-            songs={ props.songs } />
-          <ReactRouter.Link
-            to="/songs/new"
-            className="btn btn-primary btn-block">
-            Stwórz nową
-          </ReactRouter.Link>
-          <LogoutButton />
+    <div className="row">
+      <div className="col l2">
+        <div className="card">
+          <div className="card-content">
+            <SongsList
+              songs={ props.songs } />
+            <ReactRouter.Link
+              to="/songs/new"
+              className="waves-effect waves-light btn">
+              Stwórz nową
+            </ReactRouter.Link>
+            <LogoutButton />
+          </div>
         </div>
-        <div className="col-lg-8">
-          <SongDetails
-            song={ props.currentSong }
-            onDeleteSong={ props.onDeleteSong }/>
-        </div>
+      </div>
+      <div className="col l8">
+        <SongDetails
+          song={ props.currentSong }
+          onDeleteSong={ props.onDeleteSong }/>
       </div>
     </div>
   );

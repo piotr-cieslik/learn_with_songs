@@ -17,7 +17,7 @@ var LogoutButton = React.createClass({
     return (
       <a
         href="#"
-        className="btn btn-danger btn-block"
+        className="btn"
         onClick={ this.handleClick }>Wyloguj</a>
     );
   }
