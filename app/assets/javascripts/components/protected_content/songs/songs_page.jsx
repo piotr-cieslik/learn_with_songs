@@ -11,7 +11,6 @@ var SongsPage = function(props){
               className="waves-effect waves-light btn">
               Stwórz nową
             </ReactRouter.Link>
-            <LogoutButton />
           </div>
         </div>
       </div>
