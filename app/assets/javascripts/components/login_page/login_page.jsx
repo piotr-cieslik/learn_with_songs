@@ -23,7 +23,6 @@ var LoginPage = function(params){
                   <input
                     id="password"
                     type="password"
-                    placeholder="hasło"
                     value={ params.password }
                     onChange={ params.onPasswordChange } />
                 </div>
