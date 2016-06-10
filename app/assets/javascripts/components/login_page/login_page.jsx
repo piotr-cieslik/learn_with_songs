@@ -3,26 +3,27 @@ var LoginPage = function(params){
     <div className="container">
       <form
         onSubmit={ params.onSubmit } >
-        <div className="form-group">
-          <label>Email:</label>
+        <div
+          className="input-field">
           <input
-            className="form-control"
+            id="email"
             type="text"
-            placeholder="email"
             value={ params.email }
-            onChange={ params.onEmailChange }></input>
+            onChange={ params.onEmailChange } />
+          <label for="email">Email:</label>
         </div>
-        <div className="form-group">
-          <label>Hasło:</label>
+        <div
+          className="input-field">
           <input
-            className="form-control"
+            id="password"
             type="password"
             placeholder="hasło"
             value={ params.password }
-            onChange={ params.onPasswordChange }></input>
+            onChange={ params.onPasswordChange } />
+          <label for="password">Hasło:</label>
         </div>
         <button
-          className="btn btn-primary"
+          className="btn waves-effect waves-light"
           type="submit">
           Zaloguj
         </button>
