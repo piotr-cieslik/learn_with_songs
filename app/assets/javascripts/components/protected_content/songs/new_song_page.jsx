@@ -7,35 +7,40 @@ var NewSongPage = function(props){
       </ReactRouter.Link>
     </div>
     <div className="container">
-      <form
-        onSubmit={ props.onSubmit }>
-        <div className="input-field">
-          <label for="author">autor</label>
-          <input
-            id="author"
-            type="text"
-            onChange={ props.onAuthorChanged }></input>
+      <div className="card">
+        <div className='card-content'>
+          <span className="card-title">Nowa piosenka</span>
+            <form
+              onSubmit={ props.onSubmit }>
+              <div className="input-field">
+                <label for="author">autor</label>
+                <input
+                  id="author"
+                  type="text"
+                  onChange={ props.onAuthorChanged }></input>
+              </div>
+              <div className="input-field">
+                <label for="title">tytuł</label>
+                <input
+                  id="title"
+                  type="text"
+                  onChange={ props.onTitleChanged } />
+              </div>
+              <div className="input-field">
+                <label for="lyrics">tekst</label>
+                <textarea
+                  id="lyrics"
+                  className="materialize-textarea"
+                  onChange={ props.onLyricsChanged } />
+              </div>
+              <button
+                className="btn"
+                type="submit">
+                Zapisz
+              </button>
+            </form>
         </div>
-        <div className="input-field">
-          <label for="title">tytuł</label>
-          <input
-            id="title"
-            type="text"
-            onChange={ props.onTitleChanged } />
-        </div>
-        <div className="input-field">
-          <label for="lyrics">tekst</label>
-          <textarea
-            id="lyrics"
-            className="materialize-textarea"
-            onChange={ props.onLyricsChanged } />
-        </div>
-        <button
-          className="btn"
-          type="submit">
-          Zapisz
-        </button>
-      </form>
+      </div>
     </div>
   </div>
   );
