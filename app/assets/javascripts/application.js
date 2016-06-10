@@ -12,12 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require materialize-sprockets
 //= require react
 //= require react_ujs
 //= require jquery.blockUI
 //= require redux
 //= require ReactRouter
-//= require materialize
 
 //= require cookies
 //= require redux/actions
