@@ -16,12 +16,16 @@ var SongDetails = React.createClass({
           <pre>
             { this.props.song.attributes.lyrics }
           </pre>
-          <div className="btn-toolbar pull-right">
-            <button
-              type="button"
-              className="btn btn-danger"
-              onClick={ this.handleDeleteSong }>Usuń</button>
-          </div>
+        </div>
+
+        <div className="card-action">
+          <a
+            href="#"
+            className="blue-text">Edytuj</a>
+          <a
+            href="#"
+            className="red-text"
+            onClick={ this.handleDeleteSong }>Usuń</a>
         </div>
       </div>
     );
