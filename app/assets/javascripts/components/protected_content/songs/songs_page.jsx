@@ -4,6 +4,7 @@ var SongsPage = function(props){
       <div className="col l2">
         <div className="card">
           <div className="card-content">
+            <span className="card-title">Lista piosenek</span>
             <SongsList
               songs={ props.songs } />
             <ReactRouter.Link
