@@ -14,10 +14,10 @@
 //= require jquery_ujs
 //= require react
 //= require react_ujs
-//= require bootstrap-sprockets
 //= require jquery.blockUI
 //= require redux
 //= require ReactRouter
+//= require materialize
 
 //= require cookies
 //= require redux/actions

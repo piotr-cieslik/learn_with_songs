@@ -1,7 +1,0 @@
-#songs-list li{
-  cursor: pointer;
-}
-
-#songs-list li:not(.active):hover{
-  background-color: $gray-lighter;
-}
