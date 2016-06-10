@@ -17,11 +17,11 @@ var SongsList=React.createClass({
           <ul>
               { items }
           </ul>
+        </div>
+        <div className="card-action">
           <ReactRouter.Link
-            to="/songs/new"
-            className="waves-effect waves-light btn">
-            Dodaj piosenkę
-          </ReactRouter.Link>
+            className="blue-text"
+            to="/songs/new">Dodaj piosenkę</ReactRouter.Link>
         </div>
       </div>
     );
