@@ -10,25 +10,25 @@ var NewSongPage = function(props){
       <form
         onSubmit={ props.onSubmit }>
         <div className="input-field">
+          <label for="author">autor</label>
           <input
             id="author"
             type="text"
             onChange={ props.onAuthorChanged }></input>
-          <label for="author">Autor</label>
         </div>
         <div className="input-field">
+          <label for="title">tytuł</label>
           <input
             id="title"
             type="text"
             onChange={ props.onTitleChanged } />
-          <label for="title">Tytuł</label>
         </div>
         <div className="input-field">
+          <label for="lyrics">tekst</label>
           <textarea
             id="lyrics"
             className="materialize-textarea"
             onChange={ props.onLyricsChanged } />
-          <label for="lyrics">Tekst</label>
         </div>
         <button
           className="btn"
