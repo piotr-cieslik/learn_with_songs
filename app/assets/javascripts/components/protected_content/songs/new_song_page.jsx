@@ -1,58 +1,42 @@
 var NewSongPage = function(props){
   return(
-    <div>
-      <div className="container-fluid">
-        <div className="text-right">
-          <ReactRouter.Link to="/songs" className="btn btn-link">
-            <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-          </ReactRouter.Link>
-        </div>
-      </div>
-      <div className="container">
-        <form
-          className="form-horizontal"
-          onSubmit={ props.onSubmit }>
-          <div className="form-group">
-            <label className="col-sm-2 control-label">Autor</label>
-            <div className="col-sm-10">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Autor"
-                onChange={ props.onAuthorChanged }></input>
-            </div>
-          </div>
-          <div className="form-group">
-            <label className="col-sm-2 control-label">Tytuł</label>
-            <div className="col-sm-10">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Tytuł"
-                onChange={ props.onTitleChanged }></input>
-            </div>
-          </div>
-          <div className="form-group">
-            <label className="col-sm-2 control-label">Tekst</label>
-            <div className="col-sm-10">
-              <textarea
-                className="form-control"
-                rows="25"
-                placeholder="Tekst"
-                onChange={ props.onLyricsChanged }></textarea>
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-offset-2 col-sm-10">
-              <button
-                className="btn btn-primary"
-                type="submit">
-                Zapisz
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
+  <div>
+    <div className="right-align">
+      <ReactRouter.Link to="/songs" className="btn">
+        zamknij
+      </ReactRouter.Link>
     </div>
+    <div className="container">
+      <form
+        onSubmit={ props.onSubmit }>
+        <div className="input-field">
+          <input
+            id="author"
+            type="text"
+            onChange={ props.onAuthorChanged }></input>
+          <label for="author">Autor</label>
+        </div>
+        <div className="input-field">
+          <input
+            id="title"
+            type="text"
+            onChange={ props.onTitleChanged } />
+          <label for="title">Tytuł</label>
+        </div>
+        <div className="input-field">
+          <textarea
+            id="lyrics"
+            className="materialize-textarea"
+            onChange={ props.onLyricsChanged } />
+          <label for="lyrics">Tekst</label>
+        </div>
+        <button
+          className="btn"
+          type="submit">
+          Zapisz
+        </button>
+      </form>
+    </div>
+  </div>
   );
 };
