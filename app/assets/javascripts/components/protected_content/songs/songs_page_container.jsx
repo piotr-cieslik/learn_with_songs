@@ -15,20 +15,6 @@ var SongsPageContainer = React.createClass({
     });
 
   },
-  handleDeleteSong: function(songId){
-    if(!confirm("Czy na pewno chcesz usunąć piosenkę?")){
-      return;
-    }
-
-    ajaxCall.delete({
-      url: "/api/songs/" + songId,
-      success: function(){
-        applicationStore.dispatch(Actions.deleteSong(songId));
-      }.bind(this),
-      error: function(){
-      }
-    });
-  },
   handleStoreStateChange: function(){
     this.setState({ songs: applicationStore.getState().songs });
   },
@@ -39,7 +25,6 @@ var SongsPageContainer = React.createClass({
     })[0];
     return <SongsPage
       songs={ this.state.songs }
-      currentSong={ currentSong }
-      onDeleteSong={ this.handleDeleteSong }/>;
+      currentSong={ currentSong } />;
   }
 });

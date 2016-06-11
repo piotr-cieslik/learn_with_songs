@@ -1,6 +1,18 @@
 var SongDetails = React.createClass({
   handleDeleteSong: function(){
-    this.props.onDeleteSong(this.props.song.id)
+    if(!confirm("Czy na pewno chcesz usunąć piosenkę?")){
+      return;
+    }
+
+    var songId = this.props.song.id;
+    ajaxCall.delete({
+      url: "/api/songs/" + songId,
+      success: function(){
+        applicationStore.dispatch(Actions.deleteSong(songId));
+      }.bind(this),
+      error: function(){
+      }
+    });
   },
   render: function(){
     if(!this.props.song){

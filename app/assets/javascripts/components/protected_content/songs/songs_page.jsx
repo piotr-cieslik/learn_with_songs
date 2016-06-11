@@ -7,8 +7,7 @@ var SongsPage = function(props){
       </div>
       <div className="col l8">
         <SongDetails
-          song={ props.currentSong }
-          onDeleteSong={ props.onDeleteSong }/>
+          song={ props.currentSong } />
       </div>
     </div>
   );
