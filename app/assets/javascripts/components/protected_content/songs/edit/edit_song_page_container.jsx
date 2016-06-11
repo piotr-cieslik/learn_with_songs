@@ -1,21 +1,24 @@
 var EditSongPageContainer = React.createClass({
   getInitialState: function(){
-    return {};
+    return this.getStateFromProps(this.props);
   },
   componentWillReceiveProps: function(newProps){
-    var matchingSongs = newProps.songs.filter(function(s){
-      return s.id == this.props.params.id;
+    this.setState(this.getStateFromProps(newProps));
+  },
+  getStateFromProps: function(props){
+    var matchingSongs = props.songs.filter(function(s){
+      return s.id == props.params.id;
     }, this);
 
     if(matchingSongs.length != 1){
-      return;
+      return {};
     }
     var attributes = matchingSongs[0].attributes;
-    this.setState({
+    return {
       author: attributes.author,
       title: attributes.title,
       lyrics: attributes.lyrics
-    });
+    }
   },
   handleSubmit: function(e){
     e.preventDefault();
