@@ -6,7 +6,7 @@ var SongsPage = function(props){
           songs={ props.songs } />
       </div>
       <div className="col l8">
-        <SongDetails
+        <SongContainer
           song={ props.currentSong } />
       </div>
     </div>
