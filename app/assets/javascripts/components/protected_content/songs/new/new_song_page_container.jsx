@@ -19,6 +19,7 @@ var NewSongPageContainer = React.createClass({
       success: function(data){
         applicationStore.dispatch(Actions.createSong(data.data))
         ReactRouter.browserHistory.push('/songs/' + data.data.id);
+        Materialize.toast('Dodano piosnekę.', 4000);
       }.bind(this),
       error: function(xhr, status, error) {
       }.bind(this)

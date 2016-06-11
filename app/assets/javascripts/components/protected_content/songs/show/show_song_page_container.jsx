@@ -9,6 +9,7 @@ var ShowSongPageContainer = React.createClass({
       success: function(){
         applicationStore.dispatch(Actions.deleteSong(songId));
         ReactRouter.browserHistory.push('/songs');
+        Materialize.toast('Usunięto piosnekę.', 4000)
       }.bind(this),
       error: function(){
       }
