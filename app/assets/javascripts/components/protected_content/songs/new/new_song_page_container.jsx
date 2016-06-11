@@ -39,7 +39,6 @@ var NewSongPageContainer = React.createClass({
   },
   render: function(){
     return <NewSongPage
-      title={ "Nowa piosenka" }
       author={ this.state.author }
       title={ this.state.title }
       lyrics={ this.state.lyrics }
