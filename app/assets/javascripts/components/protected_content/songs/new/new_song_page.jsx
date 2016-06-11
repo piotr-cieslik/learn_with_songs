@@ -17,21 +17,21 @@ var NewSongPage = function(props){
                 <input
                   id="author"
                   type="text"
-                  onChange={ props.onAuthorChanged }></input>
+                  onChange={ props.onAuthorChanged } required/>
               </div>
               <div className="input-field">
                 <label for="title">tytuł</label>
                 <input
                   id="title"
                   type="text"
-                  onChange={ props.onTitleChanged } />
+                  onChange={ props.onTitleChanged } required/>
               </div>
               <div className="input-field">
                 <label for="lyrics">tekst</label>
                 <textarea
                   id="lyrics"
                   className="materialize-textarea"
-                  onChange={ props.onLyricsChanged } />
+                  onChange={ props.onLyricsChanged } required/>
               </div>
               <button
                 className="btn"
