@@ -22,6 +22,6 @@ test:
 
 production:
   adapter: postgresql
-  database: d751h6t98svhff
+  database: postgres://awpekuhcepzmxq:YekAfxkkuu-3VLkAiiJ6xelQrI@ec2-54-228-219-2.eu-west-1.compute.amazonaws.com:5432/d751h6t98svhff
   pool: 5
   timeout: 5000
