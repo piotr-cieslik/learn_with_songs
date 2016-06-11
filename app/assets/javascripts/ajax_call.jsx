@@ -96,6 +96,25 @@ var ajaxCall = function(){
     });
   };
 
+  that.put = function(parameters){
+    $.ajax({
+      url: parameters.url,
+      dataType: 'json',
+      type: 'PUT',
+      contentType: "application/json",
+      data: parameters.data,
+      headers:{
+        'Authorization': getAuthorizationToken()
+      },
+      success: function(data) {
+        parameters.success(data);
+      },
+      error: function(xhr, status, error) {
+        handleErrors(xhr, status, error, parameters);
+      }
+    });
+  };
+
   that.delete = function(parameters){
     $.ajax({
       url: parameters.url,
