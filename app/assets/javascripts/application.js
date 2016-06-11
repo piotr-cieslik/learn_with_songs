@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require materialize-sprockets
+//= require materialize
 //= require react
 //= require react_ujs
 //= require jquery.blockUI
