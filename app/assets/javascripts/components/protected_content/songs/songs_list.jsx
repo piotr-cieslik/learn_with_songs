@@ -7,6 +7,7 @@ var SongsList=React.createClass({
           song={ song } />
       );
     }, this);
+    
     return (
       <div className="card">
         <div className="card-content">
