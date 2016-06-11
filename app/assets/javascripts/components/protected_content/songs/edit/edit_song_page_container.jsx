@@ -54,7 +54,7 @@ var EditSongPageContainer = React.createClass({
     this.setState({ lyrics: e.target.value });
   },
   render: function(){
-    return <NewSongPage
+    return <EditSongPage
       author={ this.state.author }
       title={ this.state.title }
       lyrics={ this.state.lyrics }
