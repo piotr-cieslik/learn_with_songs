@@ -39,8 +39,16 @@ $(document).ajaxStop(function () {
   $.unblockUI();
 });
 
-var errorHandler = {
-  handle: function(xhr, status, error, parameters){
+var ajaxCall = function(){
+  var that = this;
+
+  var getAuthorizationToken = function(){
+    var user = applicationStore.getState().user;
+    var authorizationToken = user && user['attributes']['auth-token'];
+    return authorizationToken;
+  }
+
+  var handleErrors = function(xhr, status, error, parameters){
     if(xhr.status == 401){
       cookies.delete('current_user');
       applicationStore.dispatch(Actions.logout());
@@ -50,27 +58,26 @@ var errorHandler = {
     }
     parameters.error(xhr, status, error);
   }
-};
 
-var ajaxCall = {
-  get: function(parameters){
+  that.get = function(parameters){
     $.ajax({
       url: parameters.url,
       dataType: 'json',
       type: 'GET',
       contentType: "application/json",
       headers:{
-        'Authorization': this.getAuthorizationToken()
+        'Authorization': getAuthorizationToken()
       },
       success: function(data){
         parameters.success(data);
       },
-      error: function(xhr, status, err){
-        errorHandler.handle(xhr, status, error, parameters);
+      error: function(xhr, status, error){
+        handleErrors(xhr, status, error, parameters);
       }
     });
-  },
-  post: function(parameters){
+  };
+
+  that.post = function(parameters){
     $.ajax({
       url: parameters.url,
       dataType: 'json',
@@ -78,36 +85,34 @@ var ajaxCall = {
       contentType: "application/json",
       data: parameters.data,
       headers:{
-        'Authorization': this.getAuthorizationToken()
+        'Authorization': getAuthorizationToken()
       },
       success: function(data) {
         parameters.success(data);
       },
       error: function(xhr, status, error) {
-        errorHandler.handle(xhr, status, error, parameters);
+        handleErrors(xhr, status, error, parameters);
       }
     });
-  },
-  delete: function(parameters){
+  };
+
+  that.delete = function(parameters){
     $.ajax({
       url: parameters.url,
       dataType: 'json',
       type: 'DELETE',
       contentType: "application/json",
       headers:{
-        'Authorization': this.getAuthorizationToken()
+        'Authorization': getAuthorizationToken()
       },
       success: function(data) {
         parameters.success(data);
       },
       error: function(xhr, status, error) {
-        errorHandler.handle(xhr, status, error, parameters);
+        handleErrors(xhr, status, error, parameters);
       }
     });
-  },
-  getAuthorizationToken: function(){
-    var user = applicationStore.getState().user;
-    var authorizationToken = user && user['attributes']['auth-token'];
-    return authorizationToken;
-  }
-};
+  };
+
+  return that;
+}();
