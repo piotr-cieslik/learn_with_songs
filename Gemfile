@@ -23,6 +23,10 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'responders'
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
