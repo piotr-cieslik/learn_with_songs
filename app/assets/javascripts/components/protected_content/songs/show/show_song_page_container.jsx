@@ -8,6 +8,7 @@ var ShowSongPageContainer = React.createClass({
       url: "/api/songs/" + songId,
       success: function(){
         applicationStore.dispatch(Actions.deleteSong(songId));
+        ReactRouter.browserHistory.push('/songs');
       }.bind(this),
       error: function(){
       }
