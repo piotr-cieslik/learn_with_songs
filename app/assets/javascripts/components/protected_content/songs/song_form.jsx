@@ -8,7 +8,7 @@ var SongForm = function(props){
           <input
             id="author"
             type="text"
-            value={ props.author }
+            value={ props.author || '' }
             onChange={ props.onAuthorChanged } required/>
           <label
             className={ props.author && "active" }
@@ -21,7 +21,7 @@ var SongForm = function(props){
           <input
             id="title"
             type="text"
-            value={ props.title }
+            value={ props.title || '' }
             onChange={ props.onTitleChanged } required/>
           <label
             className={ props.title && "active" }
@@ -34,7 +34,7 @@ var SongForm = function(props){
           <textarea
             id="lyrics"
             className="materialize-textarea"
-            value={ props.lyrics }
+            value={ props.lyrics || '' }
             onChange={ props.onLyricsChanged } required/>
           <label
             className={ props.lyrics && "active" }
