@@ -6,9 +6,11 @@ var Appplication = React.createClass({
 
         <ReactRouter.Route path="/songs" >
           <ReactRouter.Route component={ ProtectedContent }>
-            <ReactRouter.IndexRoute component={ SongsPageContainer } />
-            <ReactRouter.Route path="new" component={ NewSongPageContainer } />
-            <ReactRouter.Route path=":id" component={ SongsPageContainer } />
+            <ReactRouter.Route component={ SongsDataLoader }>
+              <ReactRouter.IndexRoute component={ SongsPageContainer } />
+              <ReactRouter.Route path="new" component={ NewSongPageContainer } />
+              <ReactRouter.Route path=":id" component={ SongsPageContainer } />
+            </ReactRouter.Route>
           </ReactRouter.Route>
         </ReactRouter.Route>
       </ReactRouter.Router>

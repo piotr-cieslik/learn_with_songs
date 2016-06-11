@@ -4,16 +4,6 @@ var SongsPageContainer = React.createClass({
   },
   componentDidMount: function() {
     applicationStore.subscribe(this.handleStoreStateChange);
-
-    ajaxCall.get({
-      url: '/api/songs',
-      success: function(data){
-        applicationStore.dispatch(Actions.fillSongs(data.data));
-      }.bind(this),
-      error: function(){
-      }.bind(this)
-    });
-
   },
   handleStoreStateChange: function(){
     this.setState({ songs: applicationStore.getState().songs });
