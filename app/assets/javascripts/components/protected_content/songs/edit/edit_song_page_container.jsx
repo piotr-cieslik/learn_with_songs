@@ -36,7 +36,7 @@ var EditSongPageContainer = React.createClass({
       url: '/api/songs/' + this.props.params.id,
       data: jsonData,
       success: function(data){
-        // applicationStore.dispatch(Actions.createSong(data.data))
+        applicationStore.dispatch(Actions.updateSong(data.data))
         ReactRouter.browserHistory.push('/songs/' + data.data.id);
         Materialize.toast('Zaktualizowano piosnekę.', 4000);
       }.bind(this),

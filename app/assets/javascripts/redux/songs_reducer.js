@@ -12,6 +12,15 @@ function songsReducer(state, action) {
     return state.slice();
   }
 
+  if(action.type == UPDATE_SONG){
+    var matchingSong = state.filter(function(s){
+      return s.id == action.song.id;
+    })[0];
+    var index = state.indexOf(matchingSong);
+    state[index] = action.song;
+    return state.slice();
+  }
+
   if(action.type === DELETE_SONG){
     var songToDelete = state.filter(function(s){
       return s.id == action.songId;
