@@ -8,6 +8,7 @@ var Appplication = React.createClass({
           <ReactRouter.Route path="/songs" >
             <ReactRouter.Route component={ ProtectedContent }>
               <ReactRouter.Route component={ SongsDataLoader }>
+                <ReactRouter.IndexRoute component={ IndexSongPageContainerFactory } />
                 <ReactRouter.Route path="new" component={ NewSongPageContainer } />
                 <ReactRouter.Route path=":id" component={ ShowSongPageContainerFactory } />
               </ReactRouter.Route>
