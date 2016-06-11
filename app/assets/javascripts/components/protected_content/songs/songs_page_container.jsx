@@ -1,6 +1,6 @@
 var SongsPageContainer = React.createClass({
   getInitialState: function(){
-    return{ songs: [] };
+    return{ songs: applicationStore.getState().songs };
   },
   componentDidMount: function() {
     applicationStore.subscribe(this.handleStoreStateChange);
