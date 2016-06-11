@@ -17,6 +17,7 @@
 //= require react_ujs
 //= require jquery.blockUI
 //= require redux
+//= require react-redux.min
 //= require ReactRouter
 
 //= require cookies
