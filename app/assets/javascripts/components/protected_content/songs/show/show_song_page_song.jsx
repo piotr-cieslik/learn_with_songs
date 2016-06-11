@@ -11,9 +11,12 @@ var ShowSongPageSong = function(props){
       </div>
 
       <div className="card-action">
-        <a
-          href="#"
-          className="blue-text">Edytuj</a>
+        <ReactRouter.Link
+          to={ "/songs/" + props.song.id + "/edit" }
+          className="blue-text">
+            Edytuj
+        </ReactRouter.Link>
+
         <a
           href="#"
           className="red-text"
