@@ -2,9 +2,9 @@ var Appplication = React.createClass({
   render: function() {
     return(
       <ReactRouter.Router history={ ReactRouter.browserHistory }>
-        <ReactRouter.Route path="/">
-          <ReactRouter.Route path="login" component={ LoginPageContainer }></ReactRouter.Route>
-          <ReactRouter.Route path="songs" component={ ProtectedContent }>
+        <ReactRouter.Route path="login" component={ LoginPageContainer } />
+        <ReactRouter.Route path="/" component={ ProtectedContent }>
+          <ReactRouter.Route path="songs">
             <ReactRouter.IndexRoute component={ SongsPageContainer } />
             <ReactRouter.Route path="new" component={ NewSongPageContainer } />
             <ReactRouter.Route path=":id" component={ SongsPageContainer } />
