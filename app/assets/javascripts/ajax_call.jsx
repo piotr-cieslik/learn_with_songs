@@ -39,6 +39,19 @@ $(document).ajaxStop(function () {
   $.unblockUI();
 });
 
+var errorHandler = {
+  handle: function(xhr, status, error, parameters){
+    if(xhr.status == 401){
+      cookies.delete('current_user');
+      applicationStore.dispatch(Actions.logout());
+      ReactRouter.browserHistory.push('/login');
+      Materialize.toast('Przepraszamy, autoryzacja nie powiodła się. Zaloguj się ponownie.', 4000);
+      return;
+    }
+    parameters.error(xhr, status, error);
+  }
+};
+
 var ajaxCall = {
   get: function(parameters){
     $.ajax({
@@ -53,7 +66,7 @@ var ajaxCall = {
         parameters.success(data);
       },
       error: function(xhr, status, err){
-        parameters.error(xhr, status, error);
+        errorHandler.handle(xhr, status, error, parameters);
       }
     });
   },
@@ -71,7 +84,7 @@ var ajaxCall = {
         parameters.success(data);
       },
       error: function(xhr, status, error) {
-        parameters.error(xhr, status, error);
+        errorHandler.handle(xhr, status, error, parameters);
       }
     });
   },
@@ -88,7 +101,7 @@ var ajaxCall = {
         parameters.success(data);
       },
       error: function(xhr, status, error) {
-        parameters.error(xhr, status, error);
+        errorHandler.handle(xhr, status, error, parameters);
       }
     });
   },
