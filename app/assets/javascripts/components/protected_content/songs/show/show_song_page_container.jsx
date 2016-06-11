@@ -18,13 +18,18 @@ var ShowSongPageContainer = React.createClass({
       return s.id == this.props.params.id;
     }, this);
 
-    if(matchingSongs.length != 1){
-      return null;
+    var song = matchingSongs.length == 1 ? matchingSongs[0] : null;
+    if(song){
+      var songComponent = <ShowSongPageSong
+        song={ song }
+        onDelete={ this.handleDeleteSong } />
+    }
+    else{
+      var songComponent = <ShowSongPageSongNotFound />
     }
 
-    var song = matchingSongs[0];
     return <ShowSongPage
-      song={ song }
+      songComponent={ songComponent }
       songs={ this.props.songs }
       onSongDelete={ this.handleDeleteSong } />
   }
