@@ -20,6 +20,10 @@ var ShowSongPageContainer = React.createClass({
       return s.id == this.props.params.id;
     }, this);
 
+    var translations = this.props.translations.filter(function(t){
+      return t['attributes']['song-id'] == this.props.params.id;
+    }, this);
+
     var song = matchingSongs.length == 1 ? matchingSongs[0] : null;
     if(song){
       var songComponent = <ShowSongPageSong
@@ -33,6 +37,7 @@ var ShowSongPageContainer = React.createClass({
     return <ShowSongPage
       songComponent={ songComponent }
       songs={ this.props.songs }
+      translations={ translations }
       onSongDelete={ this.handleDeleteSong } />
   }
 });

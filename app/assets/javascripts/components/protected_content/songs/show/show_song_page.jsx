@@ -10,7 +10,8 @@ var ShowSongPage = function(props){
       </div>
 
       <div className="col l4">
-        <ShowSongPageTranslations />
+        <ShowSongPageTranslations
+          translations={ props.translations } />
       </div>
     </div>
   );

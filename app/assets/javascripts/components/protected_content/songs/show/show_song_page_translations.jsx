@@ -1,4 +1,8 @@
 var ShowSongPageTranslations = function(props){
+  var listItems = props.translations.map(function(t) {
+    return <ShowSongPageTranslationListItem translation={ t } />;
+  });
+
   return(
     <div>
       <div className="card">
@@ -52,6 +56,7 @@ var ShowSongPageTranslations = function(props){
       <div className="card">
         <div className="card-content">
           <span className="card-title">Tłumaczenia</span>
+          { listItems }
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 const mapStateToShowSongPageContainerProps = function(state){
   return {
-    songs: state.songs
+    songs: state.songs,
+    translations: state.translations
   }
 }
 
