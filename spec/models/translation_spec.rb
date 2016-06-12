@@ -8,6 +8,8 @@ describe Translation do
   it { should respond_to(:native_meaning) }
   it { should respond_to(:song_id) }
 
+  it { should be_valid }
+
   describe "should not be valid when" do
     it "foreign_meaning is not present" do
       @translation.foreign_meaning = nil
@@ -25,5 +27,18 @@ describe Translation do
     end
   end
 
-  it { should be_valid }
+  describe "assosiations" do
+    before(:each) do
+      @song = FactoryGirl.create(:song)
+      3.times(){ FactoryGirl.create(:translation, song: @song) }
+    end
+
+    it "destroys the associated song on destroy" do
+      translations = @song.translations
+      @song.destroy
+      translations.each do |t|
+        expect(Translations.exist?(t.id)).to eql(false)
+      end
+    end
+  end
 end

@@ -50,7 +50,7 @@ describe User do
       3.times(){ FactoryGirl.create(:song, user: @user) }
     end
 
-    it "destroys the associated song on destroy" do
+    it "destroys the associated user on destroy" do
       songs = @user.songs
       @user.destroy
       songs.each do |song|
