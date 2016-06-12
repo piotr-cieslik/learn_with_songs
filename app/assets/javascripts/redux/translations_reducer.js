@@ -7,5 +7,10 @@ function translationsReducer(state, action){
     return action.translations.slice()
   }
 
+  if(action.type == CREATE_TRANSLATION){
+    state.push(action.translation);
+    return state.slice();
+  }
+
   return state;
 }
