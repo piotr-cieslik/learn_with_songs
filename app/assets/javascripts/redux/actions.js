@@ -2,12 +2,16 @@ const FILL_SONGS = 'FILL_SONGS';
 const CREATE_SONG = 'CREATE_SONG';
 const DELETE_SONG = 'DELETE_SONG';
 const UPDATE_SONG = 'UPDATE_SONG';
+const FILL_TRANSLATIONS = 'FILL_SONGS';
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 
 Actions = {
   fillSongs: function(songs){
     return{ type: FILL_SONGS, songs: songs }
+  },
+  fillTranslations: function(translations){
+    return{ type: FILL_TRANSLATIONS, translations: translations }
   },
   createSong: function(song){
     return{ type: CREATE_SONG, song: song }

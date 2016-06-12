@@ -5,7 +5,8 @@ var reducers = Redux.combineReducers({
 
 var currentUser = cookies.getJson('current_user');
 var initialState = {
-  songs:[],
+  songs: [],
+  translations: [],
   user: currentUser
 };
 var applicationStore = Redux.createStore(reducers, initialState);
