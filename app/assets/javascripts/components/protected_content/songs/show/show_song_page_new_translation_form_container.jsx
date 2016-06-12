@@ -17,7 +17,7 @@ var ShowSongPageNewTranslationFormContainer = React.createClass({
         attributes: {
           'foreign-meaning': this.state.foreignMeaning,
           'native-meaning': this.state.nativeMeaning,
-          'song-id': 53,
+          'song-id': this.props.songId,
         }
       }
     });

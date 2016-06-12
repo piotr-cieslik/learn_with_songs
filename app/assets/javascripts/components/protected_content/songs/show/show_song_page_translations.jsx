@@ -4,7 +4,8 @@ var ShowSongPageTranslations = function(props){
       <div className="card">
         <div className="card-content">
           <span className="card-title">Dodaj tłumaczenie</span>
-          <ShowSongPageNewTranslationFormContainer />
+          <ShowSongPageNewTranslationFormContainer
+            songId={ props.songId } />
         </div>
       </div>
 
