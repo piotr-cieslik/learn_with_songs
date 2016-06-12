@@ -2,6 +2,10 @@ class Api::TranslationsController < ApplicationController
   respond_to(:json)
   before_action(:authenticate)
 
+  def index
+    respond_with(current_user.translations)
+  end
+
   def create
     parsedParams = translation_params();
 

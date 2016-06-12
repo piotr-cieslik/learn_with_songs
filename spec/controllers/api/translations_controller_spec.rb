@@ -20,6 +20,11 @@ describe Api::TranslationsController do
       request.headers['Authorization'] = nil
     end
 
+    it "GET #index" do
+      get(:index)
+      expect(response).to have_http_status(:unauthorized)
+    end
+
     it "POST #create" do
       post(:create, { id: @translation_1.id })
       expect(response).to have_http_status(:unauthorized)
@@ -28,6 +33,17 @@ describe Api::TranslationsController do
     it "DELETE #destroy" do
       delete(:destroy, { id: @translation_1.id })
       expect(response).to have_http_status(:unauthorized)
+    end
+  end
+
+  describe "GET #index" do
+    it "should return translations created by current user" do
+      get(:index)
+
+      response_data = get_response_data()
+      expect(response_data.length).to eql(1)
+      expect(response_data[0]["id"].to_i()).to eql(@translation_1.id)
+      expect(response_data[0]["type"]).to eql('translations')
     end
   end
 
