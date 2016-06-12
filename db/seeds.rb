@@ -149,3 +149,29 @@ That was just a dream
 Just a dream
 Just a dream, dream"
 rem_losing_my_religion.save!()
+
+# load tests
+load_test_user = User.new(
+  email: "load.test@outlook.com",
+  password: "123456",
+  password_confirmation: "123456"
+);
+load_test_user.generate_auth_token!()
+load_test_user.save!()
+
+(1..50).each() do |n|
+  song = load_test_user.songs.build(
+    title: roxette_spending_my_time.title,
+    author: roxette_spending_my_time.author,
+    lyrics: roxette_spending_my_time.lyrics
+  )
+  song.save!()
+  (1..20).each() do
+    song.translations.build(
+      foreign_meaning: (0...50).map { ('a'..'z').to_a[rand(26)] }.join,
+      native_meaning: (0...50).map { ('a'..'z').to_a[rand(26)] }.join,
+    ).save!()
+  end
+
+  puts("saved song #{n} / 50")
+end
