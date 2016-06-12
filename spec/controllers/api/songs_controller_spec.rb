@@ -6,6 +6,7 @@ describe Api::SongsController do
 
     @user_1 = FactoryGirl.create(:user);
     @song_1 = FactoryGirl.create(:song, user: @user_1);
+    @translation_1 = FactoryGirl.create(:translation, song: @song_1)
 
     @user_2 = FactoryGirl.create(:user);
     @song_2 = FactoryGirl.create(:song, user: @user_2);
@@ -53,12 +54,11 @@ describe Api::SongsController do
       expect(response_data[0]["id"].to_i()).to eql(@song_1.id)
     end
 
-    it "should each songs contain translation" do
+    it "should return related translations under the 'included' properties" do
       get(:index)
 
-      get_response_data().each() do |d|
-        expect(d["relationships"]["translations"]).not_to be_nil
-      end
+      included = get_response_included()
+      expect(included[0]['attributes']['foreign-meaning']).to eql(@translation_1.foreign_meaning)
     end
   end
 
@@ -75,6 +75,13 @@ describe Api::SongsController do
 
     it "should raise ActiveRecord::RecordNotFound exception when song belongs to different user" do
       expect{ get(:show, id: @song_2.id) }.to raise_exception(ActiveRecord::RecordNotFound)
+    end
+
+    it "should return related translations under the 'included' properties" do
+      get(:show, id: @song_1.id)
+
+      included = get_response_included()
+      expect(included[0]['attributes']['foreign-meaning']).to eql(@translation_1.foreign_meaning)
     end
   end
 

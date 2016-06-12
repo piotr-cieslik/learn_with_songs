@@ -10,4 +10,8 @@ module ResponseParser
   def get_response_errors
     JSON.parse(response.body)["errors"]
   end
+
+  def get_response_included
+    JSON.parse(response.body)["included"]
+  end
 end
