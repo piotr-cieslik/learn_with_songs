@@ -8,42 +8,20 @@ pre{
   margin-right: 5px;
 };
 
-#songs-collection-wrapper{
-  .collection{
-    border: none;
-  }
-
-  .collection-item{
-    border: none;
-  }
-
-  a.collection-item{
-    color: inherit;
-  }
-
-  .collection-item p{
-    margin: 0;
-  }
-
-  .collection-item p.song-author{
-    font-weight: bold;
-  }
-
-  .collection-item p.song-title{
-    margin-left: 5px;
-  }
-}
-
 ul.collection{
-  li.collection-item{
+  li.collection-item, a.collection-item{
+    color: inherit;
+
     p{
       margin: 0;
     }
 
+    p.song-author,
     p.translation-foreign-meaning{
       font-weight: bold;
     }
 
+    p.song-title,
     p.translation-native-meaning{
       margin-left: 5px;
     }

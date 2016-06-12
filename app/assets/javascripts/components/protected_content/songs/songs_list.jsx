@@ -18,11 +18,9 @@ var SongsList=React.createClass({
               <i className="material-icons">add</i>
             </ReactRouter.Link>
         </div>
-        <div id="songs-collection-wrapper">
-          <ul className="collection">
-              { items }
-          </ul>
-        </div>
+        <ul className="collection">
+            { items }
+        </ul>
       </div>
     );
   }
