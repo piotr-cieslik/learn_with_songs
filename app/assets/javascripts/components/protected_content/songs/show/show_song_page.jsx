@@ -5,8 +5,12 @@ var ShowSongPage = function(props){
         <SongsList songs={ props.songs } />
       </div>
 
-      <div className="col l8">
+      <div className="col l6">
         { props.songComponent }
+      </div>
+
+      <div className="col l4">
+        <ShowSongPageTranslations />
       </div>
     </div>
   );
