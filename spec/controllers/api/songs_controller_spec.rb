@@ -53,13 +53,6 @@ describe Api::SongsController do
       expect(response_data.length).to eql(1)
       expect(response_data[0]["id"].to_i()).to eql(@song_1.id)
     end
-
-    it "should return related translations under the 'included' properties" do
-      get(:index)
-
-      included = get_response_included()
-      expect(included[0]['attributes']['foreign-meaning']).to eql(@translation_1.foreign_meaning)
-    end
   end
 
   describe "GET #show" do
@@ -75,13 +68,6 @@ describe Api::SongsController do
 
     it "should raise ActiveRecord::RecordNotFound exception when song belongs to different user" do
       expect{ get(:show, id: @song_2.id) }.to raise_exception(ActiveRecord::RecordNotFound)
-    end
-
-    it "should return related translations under the 'included' properties" do
-      get(:show, id: @song_1.id)
-
-      included = get_response_included()
-      expect(included[0]['attributes']['foreign-meaning']).to eql(@translation_1.foreign_meaning)
     end
   end
 

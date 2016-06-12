@@ -3,11 +3,11 @@ class Api::SongsController < ApplicationController
   before_action(:authenticate)
 
   def index
-    respond_with(current_user.songs, include: [:translations])
+    respond_with(current_user.songs)
   end
 
   def show
-    respond_with(current_user.songs.find(params[:id]), include: [:translations])
+    respond_with(current_user.songs.find(params[:id]))
   end
 
   def create
