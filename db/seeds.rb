@@ -1,11 +1,24 @@
 User.delete_all()
 Song.delete_all()
+Translation.delete_all()
 
-user = User.create!(
+# Ola
+ola = User.new(
+  email: "aleksandra.czekala@outlook.com",
+  password: "george",
+  password_confirmation: "george"
+)
+ola.generate_auth_token!()
+ola.save!()
+
+# Ja
+user = User.new(
   email: "piotr.cieslik@outlook.com",
   password: "123456",
   password_confirmation: "123456"
-);
+)
+user.generate_auth_token!()
+user.save!()
 
 # Roxette - Spending my time
 roxette_spending_my_time = user.songs.build(
