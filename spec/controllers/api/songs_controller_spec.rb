@@ -52,12 +52,25 @@ describe Api::SongsController do
       expect(response_data.length).to eql(1)
       expect(response_data[0]["id"].to_i()).to eql(@song_1.id)
     end
+
+    it "should each songs contain translation" do
+      get(:index)
+
+      get_response_data().each() do |d|
+        expect(d["relationships"]["translations"]).not_to be_nil
+      end
+    end
   end
 
   describe "GET #show" do
     it "should return songs when belongs to current user" do
       get(:show, id: @song_1.id)
       expect(response).to have_http_status(:ok)
+    end
+
+    it "should contain translations" do
+      get(:show, id: @song_1.id)
+      expect(get_response_data()["relationships"]["translations"]).not_to be_nil
     end
 
     it "should raise ActiveRecord::RecordNotFound exception when song belongs to different user" do
