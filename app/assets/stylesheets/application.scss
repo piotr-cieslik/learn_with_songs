@@ -33,3 +33,15 @@ pre{
     margin-left: 5px;
   }
 }
+
+ul.collection{
+  li.collection-item{
+    p.translation-foreign-meaning{
+      font-weight: bold;
+    }
+
+    p.translation-native-meaning{
+      margin-left: 5px;
+    }
+  }
+}
