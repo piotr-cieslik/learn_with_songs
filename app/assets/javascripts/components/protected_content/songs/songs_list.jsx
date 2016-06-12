@@ -12,17 +12,16 @@ var SongsList=React.createClass({
       <div className="card">
         <div className="card-content">
           <span className="card-title">Lista piosenek</span>
+            <ReactRouter.Link
+              className="btn-floating waves-effect waves-light red right"
+              to="/songs/new">
+              <i className="material-icons">add</i>
+            </ReactRouter.Link>
         </div>
         <div id="songs-collection-wrapper">
           <ul className="collection">
               { items }
           </ul>
-        </div>
-
-        <div className="card-action">
-          <ReactRouter.Link
-            className="blue-text"
-            to="/songs/new">Dodaj piosenkę</ReactRouter.Link>
         </div>
       </div>
     );
