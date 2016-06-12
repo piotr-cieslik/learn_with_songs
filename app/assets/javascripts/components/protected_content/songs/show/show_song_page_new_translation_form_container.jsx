@@ -1,9 +1,6 @@
 var ShowSongPageNewTranslationFormContainer = React.createClass({
   getInitialState: function(){
-    return {
-      foreignMeaning: "",
-      nativeMeaning: ""
-    }
+    return this.getClearState();
   },
   handleForeignMeaningChange: function(e){
     this.setState({ foreignMeaning: e.target.value })
@@ -31,16 +28,17 @@ var ShowSongPageNewTranslationFormContainer = React.createClass({
       success: function(data){
         applicationStore.dispatch(Actions.createTranslation(data.data));
         Materialize.toast('Dodano tłumaczenie.', 4000);
+        this.setState(this.getClearState());
       }.bind(this),
       error: function(xhr, status, error) {
       }.bind(this)
     });
   },
   handleClear: function(e){
-    this.setState({
-      foreignMeaning: "",
-      nativeMeaning: ""
-    });
+    this.setState(this.getClearState());
+  },
+  getClearState: function(){
+    return { foreignMeaning: "", nativeMeaning: "" }
   },
   render: function(){
     return <ShowSongPageNewTranslationForm
