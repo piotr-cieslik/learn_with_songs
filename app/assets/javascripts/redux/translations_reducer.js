@@ -1,4 +1,4 @@
-function userReducer(state, action){
+function translationsReducer(state, action){
   if (typeof state === 'undefined') {
     return [];
   }

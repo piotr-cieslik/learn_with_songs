@@ -23,6 +23,7 @@
 //= require cookies
 //= require redux/actions
 //= require redux/songs_reducer
+//= require redux/translations_reducer
 //= require redux/user_reducer
 //= require redux/application_store
 //= require ajax_call

@@ -1,6 +1,7 @@
 var reducers = Redux.combineReducers({
   songs: songsReducer,
-  user: userReducer
+  translations: translationsReducer,
+  user: userReducer,
 });
 
 var currentUser = cookies.getJson('current_user');
