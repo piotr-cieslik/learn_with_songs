@@ -69,6 +69,21 @@ Of 'tears of a clown'
 A prayer gone blind"
 roxette_spending_my_time.save!()
 
+roxette_spending_my_time.translations().build(
+  foreign_meaning: "time",
+  native_meaning: "czas"
+).save!()
+
+roxette_spending_my_time.translations().build(
+  foreign_meaning: "sun",
+  native_meaning: "słońce"
+).save!()
+
+roxette_spending_my_time.translations().build(
+  foreign_meaning: "sun go down",
+  native_meaning: "słońce zachodzi"
+).save!()
+
 # R.E.M. - loo
 rem_losing_my_religion = user.songs.build(
   title: "Losing My Religion",
