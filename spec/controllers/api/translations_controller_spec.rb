@@ -10,6 +10,7 @@ describe Api::TranslationsController do
 
     @user_2 = FactoryGirl.create(:user);
     @song_2 = FactoryGirl.create(:song, user: @user_2);
+    @translation_2 = FactoryGirl.create(:translation, song: @song_2);
 
     request.headers['Authorization'] = @user_1.auth_token
   end
@@ -67,6 +68,17 @@ describe Api::TranslationsController do
         json_data = ActiveModelSerializers::SerializableResource.new(translation).as_json();
         post(:create, json_data)
       }.to raise_exception(ActiveRecord::RecordNotFound)
+    end
+  end
+
+  describe "DELETE #destroy" do
+    it "should delete translation, when translation belongs to user" do
+      delete(:destroy, id: @translation_1.id)
+      expect(response).to have_http_status(:no_content)
+    end
+
+    it "should not delete translation, when translation does not belong to user" do
+      expect{ delete(:destroy, id: @translation_2.id) }.to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
 

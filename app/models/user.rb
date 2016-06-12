@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates(:auth_token, presence: true, uniqueness: true, if: :auth_token_changed?)
 
   has_many(:songs, dependent: :destroy)
+  has_many(:translations, through: :songs)
 
   def generate_auth_token!
     self.auth_token = SecureRandom.uuid.gsub(/\-/,'')

@@ -17,6 +17,8 @@ class Api::TranslationsController < ApplicationController
   end
 
   def destroy
+    current_user.translations.find(params[:id]).destroy()
+    head(:no_content)
   end
 
   private
