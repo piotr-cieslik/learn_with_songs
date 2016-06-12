@@ -1,6 +1,6 @@
-User.delete_all()
-Song.delete_all()
 Translation.delete_all()
+Song.delete_all()
+User.delete_all()
 
 # Ola
 ola = User.new(
