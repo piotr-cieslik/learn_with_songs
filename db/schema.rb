@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160529213116) do
+ActiveRecord::Schema.define(version: 20160612102634) do
 
   create_table "songs", force: :cascade do |t|
     t.string   "author",     null: false
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20160529213116) do
   end
 
   add_index "songs", ["user_id"], name: "index_songs_on_user_id"
+
+  create_table "translations", force: :cascade do |t|
+    t.string   "foreign_meaning"
+    t.string   "native_meaning"
+    t.integer  "song_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "translations", ["song_id"], name: "index_translations_on_song_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
