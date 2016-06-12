@@ -7,3 +7,29 @@ pre{
 .buttons-bar-left > .btn{
   margin-right: 5px;
 };
+
+#songs-collection-wrapper{
+  .collection{
+    border: none;
+  }
+
+  .collection-item{
+    border: none;
+  }
+
+  a.collection-item{
+    color: inherit;
+  }
+
+  .collection-item p{
+    margin: 0;
+  }
+
+  .collection-item p.song-author{
+    font-weight: bold;
+  }
+
+  .collection-item p.song-title{
+    margin-left: 5px;
+  }
+}

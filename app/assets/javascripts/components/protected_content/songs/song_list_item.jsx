@@ -1,10 +1,11 @@
 var SongListItem = function(params) {
   var path = "/songs/" + params.song.id;
   return (
-    <li>
-      <ReactRouter.Link to={path}>
-        { params.song.attributes.author } - { params.song.attributes.title }
+      <ReactRouter.Link
+        to={path}
+        className="collection-item">
+        <p className="song-author">{ params.song.attributes.author }</p>
+        <p className="song-title">{ params.song.attributes.title }</p>
       </ReactRouter.Link>
-    </li>
   );
 };

@@ -7,15 +7,18 @@ var SongsList=React.createClass({
           song={ song } />
       );
     }, this);
-    
+
     return (
       <div className="card">
         <div className="card-content">
           <span className="card-title">Lista piosenek</span>
-          <ul>
+        </div>
+        <div id="songs-collection-wrapper">
+          <ul className="collection">
               { items }
           </ul>
         </div>
+
         <div className="card-action">
           <ReactRouter.Link
             className="blue-text"
