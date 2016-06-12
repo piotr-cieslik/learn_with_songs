@@ -42,11 +42,24 @@ var SongForm = function(props){
         </div>
       </div>
 
-      <button
-        className="btn"
-        type="submit">
-        Zapisz
-      </button>
+      <div className="row">
+        <div className="col s12">
+          <div className="buttons-bar-left">
+            <button
+              className="btn"
+              type="submit">
+              Zapisz
+            </button>
+
+            <ReactRouter.Link
+              to="/songs"
+              className="btn red darken-1">
+                Anuluj
+            </ReactRouter.Link>
+          </div>
+        </div>
+      </div>
+
     </form>
   );
 };

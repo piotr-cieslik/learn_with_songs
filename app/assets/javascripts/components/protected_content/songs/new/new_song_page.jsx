@@ -1,11 +1,5 @@
 var NewSongPage = function(props){
   return(
-  <div>
-    <div className="right-align">
-      <ReactRouter.Link to="/songs" className="btn">
-        zamknij
-      </ReactRouter.Link>
-    </div>
     <div className="container">
       <div className="card">
         <div className='card-content'>
@@ -21,6 +15,5 @@ var NewSongPage = function(props){
         </div>
       </div>
     </div>
-  </div>
   );
 };
