@@ -4,7 +4,7 @@ Translation.delete_all()
 
 # Ola
 ola = User.new(
-  email: "aleksandra.czekala@outlook.com",
+  email: "aleksandra.czekala@hotmail.com",
   password: "george",
   password_confirmation: "george"
 )
