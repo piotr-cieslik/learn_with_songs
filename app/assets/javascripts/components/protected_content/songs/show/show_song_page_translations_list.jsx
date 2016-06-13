@@ -1,6 +1,8 @@
 var ShowSongPageTranslationsList = function(props){
   var listItems = props.translations.map(function(t) {
-    return <ShowSongPageTranslationListItem translation={ t } />;
+    return <ShowSongPageTranslationListItemContainer
+      key={ t.id }
+      translation={ t } />;
   });
 
   return(

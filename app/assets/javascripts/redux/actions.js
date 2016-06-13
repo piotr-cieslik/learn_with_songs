@@ -4,6 +4,7 @@ const DELETE_SONG = 'DELETE_SONG';
 const UPDATE_SONG = 'UPDATE_SONG';
 const FILL_TRANSLATIONS = 'FILL_TRANSLATIONS';
 const CREATE_TRANSLATION = 'CREATE_TRANSLATION';
+const DELETE_TRANSLATION = 'DELETE_TRANSLATION';
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 
@@ -25,6 +26,9 @@ Actions = {
   },
   createTranslation: function(translation){
     return {type: CREATE_TRANSLATION, translation: translation }
+  },
+  deleteTranslation: function(translationId){
+    return{type: DELETE_TRANSLATION, translationId: translationId }
   },
   login: function(user){
     return { type: LOGIN, user: user }
