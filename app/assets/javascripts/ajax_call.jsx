@@ -52,7 +52,7 @@ var ajaxCall = function(){
     if(xhr.status == 401){
       cookies.delete('current_user');
       applicationStore.dispatch(Actions.logout());
-      ReactRouter.browserHistory.push('/login');
+      ReactRouter.browserHistory.push('/');
       Materialize.toast('Przepraszamy, autoryzacja nie powiodła się. Zaloguj się ponownie.', 4000);
       return;
     }

@@ -7,7 +7,7 @@ var LogoutButton = React.createClass({
       success: function(data) {
         cookies.delete('current_user');
         applicationStore.dispatch(Actions.logout());
-        ReactRouter.browserHistory.push('/login');
+        ReactRouter.browserHistory.push('/');
       }.bind(this),
       error: function(xhr, status, error) {
       }.bind(this)
