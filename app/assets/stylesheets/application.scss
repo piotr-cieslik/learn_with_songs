@@ -9,6 +9,11 @@ pre{
 };
 
 ul.collection{
+  li.collection-item:not(.active):hover,
+  a.collection-item:not(.active):hover{
+    background-color: #eee;
+  }
+
   li.collection-item, a.collection-item{
     color: inherit;
 
@@ -29,17 +34,11 @@ ul.collection{
 }
 
 #translations-list{
-  .collection-item{
-    button{
-      opacity :0;
-    }
+  .collection-item button{
+    opacity :0;
   }
 
-  .collection-item:hover{
-    background-color: #eee;
-
-    button{
-      opacity: 1;
-    }
+  .collection-item:hover button{
+    opacity: 1;
   }
 }
