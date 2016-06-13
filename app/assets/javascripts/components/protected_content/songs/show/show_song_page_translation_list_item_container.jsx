@@ -16,6 +16,7 @@ var ShowSongPageTranslationListItemContainer = React.createClass({
   },
   render: function(){
     return <ShowSongPageTranslationListItem
+      showNativeMeaning={ this.props.showNativeMeaning }
       translation={ this.props.translation }
       onDelete={ this.handleDelete } />
   }

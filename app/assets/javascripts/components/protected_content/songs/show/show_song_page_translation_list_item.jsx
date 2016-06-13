@@ -1,4 +1,6 @@
 var ShowSongPageTranslationListItem = function(props) {
+  var additionalClassName = props.showNativeMeaning ? "" : " hidden";
+
   return (
       <li className="collection-item">
         <button
@@ -6,8 +8,12 @@ var ShowSongPageTranslationListItem = function(props) {
           onClick={ props.onDelete }>
           <i className="material-icons">remove</i>
         </button>
-        <p className="translation-foreign-meaning">{ props.translation.attributes['foreign-meaning'] }</p>
-        <p className="translation-native-meaning">{ props.translation.attributes['native-meaning'] }</p>
+        <p className="translation-foreign-meaning">
+          { props.translation.attributes['foreign-meaning'] }
+        </p>
+        <p className={"translation-native-meaning" + additionalClassName}>
+          { props.translation.attributes['native-meaning'] }
+        </p>
       </li>
   );
 };

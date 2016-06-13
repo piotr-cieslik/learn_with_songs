@@ -9,7 +9,7 @@ var ShowSongPageTranslations = function(props){
         </div>
       </div>
 
-      <ShowSongPageTranslationsList
+      <ShowSongPageTranslationsListContainer
         translations={ props.translations } />
     </div>
   );

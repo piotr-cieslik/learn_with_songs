@@ -59,6 +59,10 @@ ul.collection{
 }
 
 #translations-list{
+  .collection-item .hidden{
+      visibility: hidden;
+  }
+
   .collection-item button{
     opacity :0;
   }
