@@ -1,8 +1,33 @@
 @import "materialize";
 
-pre{
-  font-family: inherit;
-}
+ .song-lyrics{
+   white-space: pre;
+
+   .has-translation{
+     position: relative;
+     font-weight: bold;
+     cursor: pointer;
+
+     .translation{
+       visibility: hidden;
+       background-color: #444;
+       color: #fff;
+       text-align: center;
+       padding: 5px 10px;
+       border-radius: 2px;
+       top: 125%;
+       left: 0;
+       position: absolute;
+       z-index: 1;
+     }
+   }
+
+   .has-translation:hover{
+     .translation{
+       visibility: visible;
+     }
+   }
+ }
 
 .buttons-bar-left > .btn{
   margin-right: 5px;

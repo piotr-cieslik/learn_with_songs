@@ -29,6 +29,7 @@ var ShowSongPageContainer = React.createClass({
     if(song){
       var songComponent = <ShowSongPageSong
         song={ song }
+        translations={ translations }
         onDelete={ this.handleDeleteSong } />;
 
       var translationsComponent = <ShowSongPageTranslations
