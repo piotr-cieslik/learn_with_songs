@@ -27,3 +27,19 @@ ul.collection{
     }
   }
 }
+
+#translations-list{
+  .collection-item{
+    button{
+      opacity :0;
+    }
+  }
+
+  .collection-item:hover{
+    background-color: #eee;
+
+    button{
+      opacity: 1;
+    }
+  }
+}

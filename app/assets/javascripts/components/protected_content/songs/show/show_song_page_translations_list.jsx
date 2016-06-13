@@ -10,9 +10,11 @@ var ShowSongPageTranslationsList = function(props){
       <div className="card-content">
         <span className="card-title">Tłumaczenia</span>
       </div>
-      <ul className="collection">
-        { listItems }
-      </ul>
+      <div id="translations-list">
+        <ul className="collection">
+          { listItems }
+        </ul>
+      </div>
     </div>
   );
 }
