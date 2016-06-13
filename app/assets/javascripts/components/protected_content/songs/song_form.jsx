@@ -12,7 +12,7 @@ var SongForm = function(props){
             onChange={ props.onAuthorChanged } required/>
           <label
             className={ props.author && "active" }
-            for="author">autor</label>
+            htmlFor="author">autor</label>
         </div>
       </div>
 
@@ -25,7 +25,7 @@ var SongForm = function(props){
             onChange={ props.onTitleChanged } required/>
           <label
             className={ props.title && "active" }
-            for="title">tytuł</label>
+            htmlFor="title">tytuł</label>
         </div>
       </div>
 
@@ -38,7 +38,7 @@ var SongForm = function(props){
             onChange={ props.onLyricsChanged } required/>
           <label
             className={ props.lyrics && "active" }
-            for="lyrics">tekst</label>
+            htmlFor="lyrics">tekst</label>
         </div>
       </div>
 

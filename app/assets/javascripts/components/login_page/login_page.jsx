@@ -10,7 +10,7 @@ var LoginPage = function(params){
                 onSubmit={ params.onSubmit } >
                 <div
                   className="input-field">
-                  <label for="email">email</label>
+                  <label htmlFor="email">email</label>
                   <input
                     id="email"
                     type="text"
@@ -19,7 +19,7 @@ var LoginPage = function(params){
                 </div>
                 <div
                   className="input-field">
-                  <label for="password">hasło</label>
+                  <label htmlFor="password">hasło</label>
                   <input
                     id="password"
                     type="password"
