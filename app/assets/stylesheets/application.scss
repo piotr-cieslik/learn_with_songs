@@ -1,33 +1,34 @@
 @import "materialize";
+$nav-color: #ee6e73;
 
- .song-lyrics{
-   white-space: pre;
+.song-lyrics{
+  white-space: pre;
 
-   .has-translation{
-     position: relative;
-     font-weight: bold;
-     cursor: pointer;
+  .has-translation{
+    position: relative;
+    font-weight: bold;
+    cursor: pointer;
 
-     .translation{
-       visibility: hidden;
-       background-color: #444;
-       color: #fff;
-       text-align: center;
-       padding: 5px 10px;
-       border-radius: 2px;
-       top: 125%;
-       left: 0;
-       position: absolute;
-       z-index: 1;
-     }
-   }
+    .translation{
+      visibility: hidden;
+      background-color: #444;
+      color: #fff;
+      text-align: center;
+      padding: 5px 10px;
+      border-radius: 2px;
+      top: 125%;
+      left: 0;
+      position: absolute;
+      z-index: 1;
+    }
+  }
 
-   .has-translation:hover{
-     .translation{
-       visibility: visible;
-     }
-   }
- }
+  .has-translation:hover{
+    .translation{
+      visibility: visible;
+    }
+  }
+}
 
 .buttons-bar-left > .btn{
   margin-right: 5px;
@@ -69,5 +70,22 @@ ul.collection{
 
   .collection-item:hover button{
     opacity: 1;
+  }
+}
+
+#main-page-banner{
+  width: 100%;
+  padding: 5rem 0;
+  background-color: $nav-color;
+
+  h1, h2, h3, h4, h5{
+    color: #fff;
+    font-weight: 200;
+  }
+
+  p{
+    font-size: 1.2em;
+    font-weight: 300;
+    color: #fff;
   }
 }
