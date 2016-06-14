@@ -23,19 +23,18 @@ var ShowSongPageSong = function(props){
         <div
           className="song-lyrics"
           dangerouslySetInnerHTML={{__html: lyricsWithTranslations}} />
-      </div>
 
-      <div className="card-action">
-        <ReactRouter.Link
-          to={ "/songs/" + props.song.id + "/edit" }
-          className="blue-text">
-            Edytuj
-        </ReactRouter.Link>
-
-        <a
-          href="#"
-          className="red-text"
-          onClick={ props.onDelete }>Usuń</a>
+        <div className="buttons-bar-left">
+          <ReactRouter.Link
+            to={ "/songs/" + props.song.id + "/edit" }
+            className="btn">
+              Edytuj
+          </ReactRouter.Link>
+          <a
+            href="#"
+            className="btn red darken-1"
+            onClick={ props.onDelete }>Usuń</a>
+        </div>
       </div>
     </div>
   );
