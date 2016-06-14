@@ -1,4 +1,4 @@
-var ShowSongPageTranslationsListContainer = React.createClass({
+var ShowSongPageTranslationListContainer = React.createClass({
   getInitialState: function(){
     return { showNativeMeanings: false };
   },
@@ -6,7 +6,7 @@ var ShowSongPageTranslationsListContainer = React.createClass({
     this.setState({ showNativeMeanings: e.target.checked });
   },
   render: function() {
-    return <ShowSongPageTranslationsList
+    return <ShowSongPageTranslationList
       showNativeMeanings={ this.state.showNativeMeanings }
       onShowNativeMeaningsChange={ this.handleShowNativeMeaningsChange }
       translations={ this.props.translations } />
