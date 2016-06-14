@@ -39,6 +39,8 @@ var LoginPageContainer = React.createClass({
   },
   render: function(){
     return <LoginPage
+      email={ this.state.email }
+      password={ this.state.password }
       onPasswordChange={ this.handlePasswordChange }
       onEmailChange={ this.handleEmailChange }
       onSubmit={ this.handleSubmit }></LoginPage>
