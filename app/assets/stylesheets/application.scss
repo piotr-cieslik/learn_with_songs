@@ -89,3 +89,8 @@ ul.collection{
     color: #fff;
   }
 }
+
+#login-form-validation-error{
+  @extend .card-title;
+  color: red;
+}

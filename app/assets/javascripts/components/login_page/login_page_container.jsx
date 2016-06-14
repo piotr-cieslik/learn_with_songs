@@ -1,6 +1,6 @@
 var LoginPageContainer = React.createClass({
   getInitialState: function() {
-    return { email: "", password: "" };
+    return { email: "", password: "", invalid: false };
   },
   handlePasswordChange: function(e) {
     this.setState({ password: e.target.value });
@@ -33,7 +33,7 @@ var LoginPageContainer = React.createClass({
         ReactRouter.browserHistory.push('/songs');
       }.bind(this),
       error: function(xhr, status, error) {
-        this.setState({ password: "" });
+        this.setState({ password: "", invalid: true });
       }.bind(this)
     });
   },
@@ -41,6 +41,7 @@ var LoginPageContainer = React.createClass({
     return <LoginPage
       email={ this.state.email }
       password={ this.state.password }
+      invalid={ this.state.invalid }
       onPasswordChange={ this.handlePasswordChange }
       onEmailChange={ this.handleEmailChange }
       onSubmit={ this.handleSubmit }></LoginPage>

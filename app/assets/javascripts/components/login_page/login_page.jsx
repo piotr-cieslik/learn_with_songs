@@ -1,4 +1,10 @@
 var LoginPage = function(params){
+  var validationError = null;
+
+  if(params.invalid){
+    validationError = <div id="login-form-validation-error">Niepoprawny email lub hasło</div>;
+  }
+
   return(
     <div id="main-page-banner">
       <div className="container">
@@ -13,25 +19,26 @@ var LoginPage = function(params){
             <div className="card">
               <div className="card-content">
                 <span className="card-title">Logowanie</span>
+                { validationError }
                 <form
                   onSubmit={ params.onSubmit } >
                   <div
                     className="input-field">
-                    <label htmlFor="email">email</label>
                     <input
                       id="email"
                       type="text"
                       value={ params.email }
                       onChange={ params.onEmailChange } />
+                      <label htmlFor="email">email</label>
                   </div>
                   <div
                     className="input-field">
-                    <label htmlFor="password">hasło</label>
                     <input
                       id="password"
                       type="password"
                       value={ params.password }
                       onChange={ params.onPasswordChange } />
+                    <label htmlFor="password">hasło</label>
                   </div>
                   <button
                     className="btn waves-effect waves-light"
