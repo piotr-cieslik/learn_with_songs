@@ -61,11 +61,6 @@ describe Api::SongsController do
       expect(response).to have_http_status(:ok)
     end
 
-    it "should contain translations" do
-      get(:show, id: @song_1.id)
-      expect(get_response_data()["relationships"]["translations"]).not_to be_nil
-    end
-
     it "should raise ActiveRecord::RecordNotFound exception when song belongs to different user" do
       expect{ get(:show, id: @song_2.id) }.to raise_exception(ActiveRecord::RecordNotFound)
     end
