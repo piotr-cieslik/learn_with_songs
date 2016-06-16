@@ -5,9 +5,9 @@ var ShowSongPageTranslationListItemContainer = React.createClass({
     }
 
     ajaxCall.delete({
-      url: "/api/translations/" +  this.props.translation.id,
+      url: "/api/translations/" +  this.props.translation.get('id'),
       success: function(){
-        applicationStore.dispatch(Actions.deleteTranslation( this.props.translation.id));
+        applicationStore.dispatch(Actions.deleteTranslation( this.props.translation ));
         Materialize.toast('Usunięto tłumaczenie.', 4000);
       }.bind(this),
       error: function(){

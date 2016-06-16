@@ -1,7 +1,7 @@
 var ShowSongPageTranslationList = function(props){
   var listItems = props.translations.map(function(t) {
     return <ShowSongPageTranslationListItemContainer
-      key={ t.id }
+      key={ t.get('id') }
       showNativeMeaning={ props.showNativeMeanings }
       translation={ t } />;
   });

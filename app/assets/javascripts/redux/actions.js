@@ -27,8 +27,8 @@ Actions = {
   createTranslation: function(translation){
     return {type: CREATE_TRANSLATION, translation: translation }
   },
-  deleteTranslation: function(translationId){
-    return{type: DELETE_TRANSLATION, translationId: translationId }
+  deleteTranslation: function(translation){
+    return{type: DELETE_TRANSLATION, translation: translation }
   },
   login: function(user){
     return { type: LOGIN, user: user }

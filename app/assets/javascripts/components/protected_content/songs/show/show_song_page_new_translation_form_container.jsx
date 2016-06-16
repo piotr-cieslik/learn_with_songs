@@ -26,7 +26,7 @@ var ShowSongPageNewTranslationFormContainer = React.createClass({
       url: '/api/translations',
       data: jsonData,
       success: function(data){
-        applicationStore.dispatch(Actions.createTranslation(data.data));
+        applicationStore.dispatch(Actions.createTranslation(Immutable.fromJS(data.data)));
         Materialize.toast('Dodano tłumaczenie.', 4000);
         this.setState(this.getClearState());
       }.bind(this),

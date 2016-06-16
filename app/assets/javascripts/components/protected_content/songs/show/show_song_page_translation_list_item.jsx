@@ -3,7 +3,7 @@ var ShowSongPageTranslationListItem = function(props) {
   if(props.showNativeMeaning){
     nativeMeaning = (
       <p className="translation-native-meaning">
-        { props.translation.attributes['native-meaning'] }
+        { props.translation.get('attributes').get('native-meaning') }
       </p>
     );
   }
@@ -14,7 +14,7 @@ var ShowSongPageTranslationListItem = function(props) {
           className="red-text right"
           onClick={ props.onDelete }>usuń</a>
         <p className="translation-foreign-meaning">
-          { props.translation.attributes['foreign-meaning'] }
+          { props.translation.get('attributes').get('foreign-meaning') }
         </p>
         { nativeMeaning }
       </li>

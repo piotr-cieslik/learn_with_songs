@@ -12,7 +12,8 @@ var SongsDataLoader = React.createClass({
     ajaxCall.get({
       url: '/api/translations',
       success: function(data){
-        applicationStore.dispatch(Actions.fillTranslations(data.data));
+        var immutableData = Immutable.fromJS(data.data)
+        applicationStore.dispatch(Actions.fillTranslations(immutableData));
       }.bind(this),
       error: function(){
       }.bind(this)

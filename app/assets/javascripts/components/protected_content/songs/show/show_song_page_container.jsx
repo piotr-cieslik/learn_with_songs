@@ -21,8 +21,8 @@ var ShowSongPageContainer = React.createClass({
     }, this);
 
     var translations = this.props.translations.filter(function(t){
-      return t['attributes']['song-id'] == this.props.params.id;
-    }, this);
+      return t.get('attributes').get('song-id') == this.props.params.id;
+    }, this).toList();
 
     var song = matchingSongs.length == 1 ? matchingSongs[0] : null;
 

@@ -1,8 +1,8 @@
 var ShowSongPageSong = function(props){
   var lyricsWithTranslations = props.song.attributes.lyrics;
   props.translations.forEach(function(t){
-    var foreign = t.attributes['foreign-meaning'];
-    var native = t.attributes['native-meaning'];
+    var foreign = t.get('attributes').get('foreign-meaning');
+    var native = t.get('attributes').get('native-meaning');
 
     var regex = new RegExp(foreign, 'gi');
     lyricsWithTranslations = lyricsWithTranslations.replace(regex, function(x){
