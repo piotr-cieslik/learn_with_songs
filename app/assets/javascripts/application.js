@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require materialize
+//= require immutable
 //= require react
 //= require react_ujs
 //= require jquery.blockUI
