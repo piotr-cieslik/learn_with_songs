@@ -3,11 +3,11 @@ var ShowSongPageContainer = React.createClass({
     if(!confirm("Czy na pewno chcesz usunąć piosenkę?")){
       return;
     }
-    var songId = this.props.params.id;
+    var song = this.getCurrentSong();
     ajaxCall.delete({
-      url: "/api/songs/" + songId,
+      url: "/api/songs/" + song.get('id'),
       success: function(){
-        applicationStore.dispatch(Actions.deleteSong(songId));
+        applicationStore.dispatch(Actions.deleteSong(song));
         ReactRouter.browserHistory.push('/songs');
         Materialize.toast('Usunięto piosnekę.', 4000);
       }.bind(this),
@@ -15,16 +15,17 @@ var ShowSongPageContainer = React.createClass({
       }
     });
   },
-  render: function(){
-    var matchingSongs = this.props.songs.filter(function(s){
-      return s.id == this.props.params.id;
+  getCurrentSong: function(){
+    return  this.props.songs.find(function(s){
+      return s.get('id') == this.props.params.id;
     }, this);
+  },
+  render: function(){
+    var song = this.getCurrentSong();
 
     var translations = this.props.translations.filter(function(t){
       return t.get('attributes').get('song-id') == this.props.params.id;
     }, this).toList();
-
-    var song = matchingSongs.length == 1 ? matchingSongs[0] : null;
 
     if(song){
       var songComponent = <ShowSongPageSong
@@ -33,7 +34,7 @@ var ShowSongPageContainer = React.createClass({
         onDelete={ this.handleDeleteSong } />;
 
       var translationsComponent = <ShowSongPageTranslations
-        songId={ song.id }
+        songId={ song.get('id') }
         translations={ translations } />
     }
     else{

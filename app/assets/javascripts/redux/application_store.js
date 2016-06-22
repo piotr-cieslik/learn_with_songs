@@ -6,7 +6,7 @@ var reducers = Redux.combineReducers({
 
 var currentUser = cookies.getJson('current_user');
 var initialState = {
-  songs: [],
+  songs: Immutable.List(),
   translations: Immutable.List(),
   user: currentUser
 };

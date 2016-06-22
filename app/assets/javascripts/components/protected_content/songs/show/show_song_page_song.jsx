@@ -1,5 +1,5 @@
 var ShowSongPageSong = function(props){
-  var lyricsWithTranslations = props.song.attributes.lyrics;
+  var lyricsWithTranslations = props.song.get('attributes').get('lyrics');
   props.translations.forEach(function(t){
     var foreign = t.get('attributes').get('foreign-meaning');
     var native = t.get('attributes').get('native-meaning');
@@ -18,7 +18,7 @@ var ShowSongPageSong = function(props){
     <div className="card">
       <div className="card-content">
         <span className="card-title">
-          { props.song.attributes.author } - { props.song.attributes.title }
+          { props.song.get('attributes').get('author') } - { props.song.get('attributes').get('title') }
         </span>
         <div
           className="song-lyrics"
@@ -26,7 +26,7 @@ var ShowSongPageSong = function(props){
 
         <div className="buttons-bar-left">
           <ReactRouter.Link
-            to={ "/songs/" + props.song.id + "/edit" }
+            to={ "/songs/" + props.song.get('id') + "/edit" }
             className="btn">
               Edytuj
           </ReactRouter.Link>

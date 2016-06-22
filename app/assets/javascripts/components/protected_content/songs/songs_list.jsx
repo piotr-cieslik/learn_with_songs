@@ -3,7 +3,7 @@ var SongsList=React.createClass({
     var items = this.props.songs.map(function(song) {
       return (
         <SongListItem
-          key={ song.id }
+          key={ song.get('id') }
           song={ song } />
       );
     }, this);

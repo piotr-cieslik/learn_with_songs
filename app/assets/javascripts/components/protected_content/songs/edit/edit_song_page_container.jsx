@@ -6,18 +6,19 @@ var EditSongPageContainer = React.createClass({
     this.setState(this.getStateFromProps(newProps));
   },
   getStateFromProps: function(props){
-    var matchingSongs = props.songs.filter(function(s){
-      return s.id == props.params.id;
+    var matchingSong = props.songs.find(function(s){
+      return s.get('id') == props.params.id;
     }, this);
 
-    if(matchingSongs.length != 1){
-      return {};
+    if(!matchingSong){
+      return {}
     }
-    var attributes = matchingSongs[0].attributes;
+
+    var attributes = matchingSong.get('attributes');
     return {
-      author: attributes.author,
-      title: attributes.title,
-      lyrics: attributes.lyrics
+      author: attributes.get('author'),
+      title: attributes.get('title'),
+      lyrics: attributes.get('lyrics')
     }
   },
   handleSubmit: function(e){
@@ -39,7 +40,7 @@ var EditSongPageContainer = React.createClass({
       url: '/api/songs/' + this.props.params.id,
       data: jsonData,
       success: function(data){
-        applicationStore.dispatch(Actions.updateSong(data.data))
+        applicationStore.dispatch(Actions.updateSong(Immutable.fromJS(data.data)));
         ReactRouter.browserHistory.push('/songs/' + data.data.id);
         Materialize.toast('Zaktualizowano piosnekę.', 4000);
       }.bind(this),

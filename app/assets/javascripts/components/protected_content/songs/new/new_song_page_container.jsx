@@ -20,7 +20,7 @@ var NewSongPageContainer = React.createClass({
       url: '/api/songs',
       data: jsonData,
       success: function(data){
-        applicationStore.dispatch(Actions.createSong(data.data))
+        applicationStore.dispatch(Actions.createSong(Immutable.fromJS(data.data)))
         ReactRouter.browserHistory.push('/songs/' + data.data.id);
         Materialize.toast('Dodano piosnekę.', 4000);
       }.bind(this),

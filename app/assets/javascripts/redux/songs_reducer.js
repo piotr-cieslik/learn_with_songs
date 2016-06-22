@@ -1,6 +1,6 @@
 function songsReducer(state, action) {
   if (typeof state === 'undefined') {
-    return [];
+    return Immutable.List();
   }
 
   if(action.type === FILL_SONGS){
@@ -8,27 +8,20 @@ function songsReducer(state, action) {
   }
 
   if(action.type === CREATE_SONG){
-    state.push(action.song);
-    return state.slice();
+    return state.push(action.song);
   }
 
   if(action.type == UPDATE_SONG){
-    var matchingSong = state.filter(function(s){
-      return s.id == action.song.id;
+    var matchingSong = state.find(function(s){
+      return s.get('id') == action.song.get('id');
     })[0];
     var index = state.indexOf(matchingSong);
-    state[index] = action.song;
-    return state.slice();
+    return state.set(index, action.song);
   }
 
   if(action.type === DELETE_SONG){
-    var songToDelete = state.filter(function(s){
-      return s.id == action.songId;
-    })[0];
-    var index = state.indexOf(songToDelete);
-    state.splice(index, 1);
-
-    return state.slice();
+    var index = state.indexOf(action.song);
+    return state.delete(index);
   }
 
   return state;

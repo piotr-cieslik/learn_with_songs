@@ -3,7 +3,8 @@ var SongsDataLoader = React.createClass({
     ajaxCall.get({
       url: '/api/songs',
       success: function(data){
-        applicationStore.dispatch(Actions.fillSongs(data.data));
+        var immutableData = Immutable.fromJS(data.data);
+        applicationStore.dispatch(Actions.fillSongs(immutableData));
       }.bind(this),
       error: function(){
       }.bind(this)
@@ -12,7 +13,7 @@ var SongsDataLoader = React.createClass({
     ajaxCall.get({
       url: '/api/translations',
       success: function(data){
-        var immutableData = Immutable.fromJS(data.data)
+        var immutableData = Immutable.fromJS(data.data);
         applicationStore.dispatch(Actions.fillTranslations(immutableData));
       }.bind(this),
       error: function(){
