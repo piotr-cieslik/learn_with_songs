@@ -2,6 +2,12 @@ var ShowSongPageNewTranslationFormContainer = React.createClass({
   getInitialState: function(){
     return this.getClearState();
   },
+  componentWillReceiveProps: function(newProps){
+    if(!newProps.selectedText){
+      return;
+    }
+    this.setState({ foreignMeaning: newProps.selectedText })
+  },
   handleForeignMeaningChange: function(e){
     this.setState({ foreignMeaning: e.target.value })
   },

@@ -1,4 +1,7 @@
 var ShowSongPageContainer = React.createClass({
+  getInitialState: function(){
+    return {};
+  },
   handleDeleteSong: function(){
     if(!confirm("Czy na pewno chcesz usunąć piosenkę?")){
       return;
@@ -20,6 +23,13 @@ var ShowSongPageContainer = React.createClass({
       return s.get('id') == this.props.params.id;
     }, this);
   },
+  trackSelection: function(element){
+    $('.song-lyrics').mouseup(this.handleMouseUp);
+  },
+  handleMouseUp: function(){
+    var text = window.getSelection().toString();
+    this.setState({ selectedText: text });
+  },
   render: function(){
     var song = this.getCurrentSong();
 
@@ -29,12 +39,14 @@ var ShowSongPageContainer = React.createClass({
 
     if(song){
       var songComponent = <ShowSongPageSong
+        ref={ this.trackSelection }
         song={ song }
         translations={ translations }
         onDelete={ this.handleDeleteSong } />;
 
       var translationsComponent = <ShowSongPageTranslations
         songId={ song.get('id') }
+        selectedText={ this.state.selectedText }
         translations={ translations } />
     }
     else{
