@@ -6,22 +6,20 @@ var ShowSongPageNewTranslationForm = function(props){
           <input
             id="foreign-meaning"
             type="text"
+            placeholder="tekst"
             value={ props.foreignMeaning || '' }
             onChange={ props.onForeignMeaningChange }
             required/>
-          <label
-            htmlFor="foreign-meaning">tekst</label>
         </div>
 
         <div className="input-field">
           <input
             id="native-meaning"
             type="text"
+            placeholder="tłumaczenie"
             value={ props.nativeMeaning || '' }
             onChange={ props.onNativeMeaningChange }
             required/>
-          <label
-            htmlFor="native-meaning">tłumaczenie</label>
         </div>
 
         <div className="buttons-bar-left">
