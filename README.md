@@ -6,9 +6,11 @@ Simple web site written for my parents, that can be helpful in foreign languages
 - add flash cards, to improve learning process
 - integrate with lyrics provider, so the lyrics can be imported to the page automatically
 
-#### Technologies:
+#### Technologies, libraries, frameworks:
+- Ruby on Rails (rest API mainly)
 - ReactJS ([https://facebook.github.io/react/](Link URL))
 - Redux ([http://redux.js.org](Link URL))
 - ReactRouter
 - ImmutableJS ([https://facebook.github.io/immutable-js/](Link URL))
-- Ruby on Rails
+- Sass
+- Materializecss ([http://materializecss.com](Link URL))
