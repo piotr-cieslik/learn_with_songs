@@ -7,6 +7,8 @@ Simple web site written for my parents, that can be helpful in foreign languages
 - integrate with lyrics provider, so the lyrics can be imported to the page automatically
 
 #### Technologies:
-- ReactJS
+- ReactJS ([https://facebook.github.io/react/](Link URL))
 - Redux ([http://redux.js.org](Link URL))
+- ReactRouter
+- Immutable ([https://facebook.github.io/immutable-js/](Link URL))
 - Ruby on Rails
