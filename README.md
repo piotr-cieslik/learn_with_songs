@@ -8,6 +8,7 @@ Simple web site written for my parents, that can be helpful in foreign languages
 
 #### Technologies, libraries, frameworks:
 - Ruby on Rails (rest API mainly)
+- Single Page Application (SPA)
 - ReactJS ([https://facebook.github.io/react/](Link URL))
 - Redux ([http://redux.js.org](Link URL))
 - ReactRouter
